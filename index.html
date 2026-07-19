@@ -16,6 +16,7 @@
 <body>
 
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<div id="scrollProgress" aria-hidden="true"></div>
 <div id="cursorGlow" aria-hidden="true"></div>
 
 <!-- ============ HEADER ============ -->
@@ -27,7 +28,7 @@
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#metodo">Método</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
       <li><a href="#planos">Planos</a></li>
       <li><a href="quem-somos.html">Quem somos</a></li>
       <li><a href="#contato">Contato</a></li>
@@ -67,8 +68,14 @@
       <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
     </div>
     <div class="hero-visual reveal">
-      <div class="phone-halo" aria-hidden="true"></div>
+      <div class="visual-scene" aria-hidden="true">
+        <div class="scene-ring"></div>
+        <div class="scene-ring scene-ring-2"></div>
+        <div class="scene-grid"></div>
+        <div class="phone-halo"></div>
+      </div>
       <img class="hero-phone" src="img/agente-ia.webp" alt="Agente de IA da FluxoIA no celular" width="860" height="1147" fetchpriority="high">
+      <div class="phone-ground" aria-hidden="true"></div>
       <div class="hero-chip chip-1">
         <div class="chip-icon" style="background:rgba(255,157,46,.16)">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffb35c" stroke-width="2.2"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
@@ -85,11 +92,25 @@
   </div>
 </section>
 
-<!-- ============ MARQUEE ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Sites Institucionais <b>◆</b> Landing Pages <b>◆</b> Agentes de IA <b>◆</b> Automação Comercial <b>◆</b> Social Media &amp; Tráfego Pago <b>◆</b> Visual <b>◆</b></span>
-    <span>Sites Institucionais <b>◆</b> Landing Pages <b>◆</b> Agentes de IA <b>◆</b> Automação Comercial <b>◆</b> Social Media &amp; Tráfego Pago <b>◆</b> Visual <b>◆</b></span>
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-group">
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20"/></svg>Sites Institucionais</span>
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>Landing Pages</span>
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V5M12 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM9 13h.01M15 13h.01"/></svg>Automação com IA</span>
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4 8.6 8.6 0 0 1-3.9-.9L3 21l2-5.4a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 12.5 3a8.4 8.4 0 0 1 8.5 8.5z"/></svg>Automação Comercial</span>
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>Marketing Digital</span>
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.3l-4.8 2.6.9-5.4L4.2 7.7l5.4-.8L12 2z"/></svg>Identidade Visual</span>
+    </span>
+    <span class="ticker-group">
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20"/></svg>Sites Institucionais</span>
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>Landing Pages</span>
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V5M12 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM9 13h.01M15 13h.01"/></svg>Automação com IA</span>
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4 8.6 8.6 0 0 1-3.9-.9L3 21l2-5.4a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 12.5 3a8.4 8.4 0 0 1 8.5 8.5z"/></svg>Automação Comercial</span>
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>Marketing Digital</span>
+      <span class="ticker-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.3l-4.8 2.6.9-5.4L4.2 7.7l5.4-.8L12 2z"/></svg>Identidade Visual</span>
+    </span>
   </div>
 </div>
 
@@ -110,7 +131,7 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20M6 6.5h.01"/></svg>
         </div>
         <h3>Sites Institucionais</h3>
-        <p>Seu negócio com presença digital profissional: site completo, rápido, responsivo e otimizado para o Google.</p>
+        <p>Transforme visitantes em clientes com um site de alta performance, desenvolvido para transmitir autoridade, gerar confiança e totalmente otimizado para o Google.</p>
         <div class="service-tags"><span>Design sob medida</span><span>SEO</span><span>Mobile first</span></div>
       </div>
       <div class="service-card reveal reveal-d1">
@@ -119,7 +140,7 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 16.5 3 21l4.5-1.5M14 4l6 6M9 15l-4.5 4.5M14 4l-9 9 5 5 9-9a3.5 3.5 0 0 0-5-5z"/></svg>
         </div>
         <h3>Landing Pages</h3>
-        <p>Páginas de campanha com um único objetivo: converter. Ideais para anúncios, lançamentos e captação de leads.</p>
+        <p>Páginas estrategicamente desenvolvidas para um único objetivo: converter. Perfeitas para campanhas de tráfego pago, lançamentos, captação de leads e aumento das vendas.</p>
         <div class="service-tags"><span>Alta conversão</span><span>Copy persuasiva</span><span>Entrega rápida</span></div>
       </div>
       <div class="service-card reveal reveal-d2">
@@ -127,8 +148,8 @@
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V5M12 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM9 13h.01M15 13h.01M9.5 16h5"/></svg>
         </div>
-        <h3>Agentes de IA</h3>
-        <p>Atendimento inteligente no seu site e WhatsApp: responde, qualifica e agenda — 24 horas por dia.</p>
+        <h3>Automação com IA</h3>
+        <p>Atendimento que nunca para. Automatize seu site e WhatsApp com Inteligência Artificial para responder instantaneamente, qualificar leads, agendar compromissos e aumentar suas oportunidades de venda, 24 horas por dia.</p>
         <div class="service-tags"><span>Chatbot</span><span>WhatsApp</span><span>Qualificação</span></div>
       </div>
       <div class="service-card reveal">
@@ -145,8 +166,8 @@
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
         </div>
-        <h3>Social Media &amp; Tráfego Pago</h3>
-        <p>Gestão de redes sociais e campanhas de anúncios que colocam sua marca na frente do público certo, todos os dias.</p>
+        <h3>Marketing Digital</h3>
+        <p>Gerenciamos suas redes sociais e campanhas estratégicas para fortalecer sua presença digital, criar conexões reais e posicionar sua marca diante das pessoas certas, todos os dias.</p>
         <div class="service-tags"><span>Instagram</span><span>Meta Ads</span><span>Google Ads</span></div>
       </div>
       <div class="service-card reveal reveal-d2">
@@ -154,8 +175,8 @@
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.3l-4.8 2.6.9-5.4L4.2 7.7l5.4-.8L12 2z"/></svg>
         </div>
-        <h3>Visual</h3>
-        <p>Ajustamos a apresentação da sua marca no digital para transmitir a confiança que fecha negócios.</p>
+        <h3>Identidade Visual</h3>
+        <p>Sua marca tem uma história. Nossa missão é transformá-la em uma identidade visual forte, memorável e profissional, capaz de transmitir confiança, autoridade e criar conexão com o público ideal.</p>
         <div class="service-tags"><span>Marca</span><span>Conteúdo</span><span>Posicionamento</span></div>
       </div>
     </div>
@@ -239,6 +260,60 @@
           <div><b>Alpha Assessoria</b><span>Contabilidade</span></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFÓLIO ============ -->
+<section id="portfolio" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Portfólio</div>
+      <h2 class="section-title">Projetos que já saíram do <span class="hl">papel</span></h2>
+      <p class="section-sub">Um pouco do que já criamos — navegue por categoria e veja de perto.</p>
+    </div>
+
+    <div class="portfolio-tabs reveal" role="tablist" aria-label="Categorias do portfólio">
+      <span class="ptab-indicator" aria-hidden="true"></span>
+      <button class="ptab active" data-filter="all" role="tab" aria-selected="true">Todos</button>
+      <button class="ptab" data-filter="logo" role="tab" aria-selected="false">Identidade Visual</button>
+      <button class="ptab" data-filter="social" role="tab" aria-selected="false">Social Media</button>
+      <button class="ptab" data-filter="site" role="tab" aria-selected="false">Sites</button>
+    </div>
+
+    <div class="portfolio-grid" id="portfolioGrid">
+      <figure class="pcard reveal" data-cat="logo" tabindex="0" role="button" aria-label="Ampliar projeto: Barbearia do Cristiano">
+        <img src="img/portfolio/logo-barbearia-cristiano.jpg" alt="Logo da Barbearia do Cristiano — monograma BC com navalha" loading="lazy">
+        <span class="pcard-chip">Identidade Visual</span>
+        <span class="pcard-expand" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </span>
+        <figcaption class="pcard-info"><b>Barbearia do Cristiano</b><span>Logotipo &amp; marca</span></figcaption>
+      </figure>
+
+      <figure class="pcard reveal" data-cat="logo" tabindex="0" role="button" aria-label="Ampliar projeto: CL Manutenção Elétrica">
+        <img src="img/portfolio/logo-cl-eletrica.png" alt="Logo da CL Manutenção Elétrica Residencial em placa de fachada" loading="lazy">
+        <span class="pcard-chip">Identidade Visual</span>
+        <span class="pcard-expand" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </span>
+        <figcaption class="pcard-info"><b>CL Manutenção Elétrica</b><span>Logo &amp; sinalização</span></figcaption>
+      </figure>
+
+      <figure class="pcard pcard--logo reveal" data-cat="logo" tabindex="0" role="button" aria-label="Ampliar projeto: Quesia Constâncio Advocacia">
+        <img src="img/portfolio/logo-quesia-dourada.png" alt="Logo dourada da Quesia Constâncio Advocacia" loading="lazy">
+        <span class="pcard-chip">Identidade Visual</span>
+        <span class="pcard-expand" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </span>
+        <figcaption class="pcard-info"><b>Quesia Constâncio Advocacia</b><span>Logo &amp; identidade</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="portfolio-empty" id="portfolioEmpty" hidden>
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 15l4-4 4 4M13 12l3-3 5 5"/><circle cx="9" cy="8.5" r="1.4"/></svg>
+      <p>Projetos desta categoria chegam em breve. Quer ser o próximo case?</p>
+      <a class="btn btn-grad btn-sm" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20um%20projeto%20com%20a%20FluxoIA%20Studio." target="_blank" rel="noopener">Fale com a gente</a>
     </div>
   </div>
 </section>
@@ -342,43 +417,78 @@
 
 <!-- ============ FOOTER ============ -->
 <footer>
+  <div class="footer-glowline" aria-hidden="true"></div>
+  <div class="footer-aurora" aria-hidden="true"></div>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="logo" href="#hero">
-          <img src="img/logo-white.png" width="32" height="32" alt="Logo FluxoIA Studio">
+          <img src="img/logo-white.png" width="34" height="34" alt="Logo FluxoIA Studio">
           <span>Fluxo<em>IA</em> Studio</span>
         </a>
-        <p>Criamos sites e landing pages que transformam visitantes em clientes — com IA e estratégia integradas.</p>
+        <p>Tecnologia, IA e estratégia para transformar visitantes em clientes. Seu negócio no próximo nível.</p>
+        <div class="social-icons">
+          <a class="social-icon" href="https://wa.me/5524981617338" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5-.3.6-.6.7-.4 1 .6 1 1.3 1.7 2.2 2.3.3.2.5.2.7 0l.9-1.1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4 0 .1 0 .7-.2 1.3z"/></svg>
+          </a>
+          <a class="social-icon" href="https://www.instagram.com/fluxo_ia_studio/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
       </div>
-      <div class="footer-col">
+      <nav class="footer-col" aria-label="Navegação do rodapé">
         <h5>Navegação</h5>
         <ul>
           <li><a href="#servicos">Serviços</a></li>
           <li><a href="#metodo">Método</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
           <li><a href="#planos">Planos</a></li>
           <li><a href="quem-somos.html">Quem somos</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
-      </div>
+      </nav>
+      <nav class="footer-col" aria-label="Serviços no rodapé">
+        <h5>Soluções</h5>
+        <ul>
+          <li><a href="#servicos">Sites Institucionais</a></li>
+          <li><a href="#servicos">Landing Pages</a></li>
+          <li><a href="#servicos">Automação com IA</a></li>
+          <li><a href="#servicos">Marketing Digital</a></li>
+          <li><a href="#servicos">Identidade Visual</a></li>
+        </ul>
+      </nav>
       <div class="footer-col">
-        <h5>Contato</h5>
+        <h5>Fale com a gente</h5>
         <div class="social-icons">
-          <a class="social-icon" href="https://wa.me/5524981617338" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5-.3.6-.6.7-.4 1 .6 1 1.3 1.7 2.2 2.3.3.2.5.2.7 0l.9-1.1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4 0 .1 0 .7-.2 1.3z"/></svg>
+          <a class="social-icon" href="https://wa.me/5524981617338" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5-.3.6-.6.7-.4 1 .6 1 1.3 1.7 2.2 2.3.3.2.5.2.7 0l.9-1.1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4 0 .1 0 .7-.2 1.3z"/></svg>
           </a>
-          <a class="social-icon" href="https://www.instagram.com/fluxo_ia_studio/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          <a class="social-icon" href="https://www.instagram.com/fluxo_ia_studio/" target="_blank" rel="noopener" aria-label="Instagram @fluxo_ia_studio">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a class="social-icon" href="mailto:contato@studiofluxoia.com.br" aria-label="Enviar e-mail">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg>
           </a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="tagline">FluxoIA Studio — Sites | Landing Pages | IA</span>
       <span>© 2026 FluxoIA Studio. Todos os direitos reservados.</span>
+      <span class="tagline">Sites · Automação · IA</span>
     </div>
   </div>
 </footer>
+
+<!-- ============ LIGHTBOX PORTFÓLIO ============ -->
+<div id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Visualização ampliada do projeto">
+  <button id="lightboxClose" aria-label="Fechar visualização">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <figure>
+    <img src="" alt="">
+    <figcaption></figcaption>
+  </figure>
+</div>
 
 <!-- ============ FLUTUANTE WHATSAPP ============ -->
 <a id="floatWa" href="https://wa.me/5524981617338" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
@@ -505,6 +615,160 @@ document.getElementById('waForm').addEventListener('submit', e => {
   text += ' Vim pelo site da FluxoIA.';
   window.open('https://wa.me/5524981617338?text=' + encodeURIComponent(text), '_blank');
 });
+
+/* ====== barra de progresso de scroll ====== */
+(function(){
+  const bar = document.getElementById('scrollProgress');
+  if(!bar) return;
+  let ticking = false;
+  function update(){
+    const h = document.documentElement;
+    const max = h.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
+    ticking = false;
+  }
+  addEventListener('scroll', () => {
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, {passive:true});
+  update();
+})();
+
+/* ====== ripple nos botões ====== */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.addEventListener('pointerdown', e => {
+    const btn = e.target.closest('.btn');
+    if(!btn) return;
+    const r = btn.getBoundingClientRect();
+    const d = Math.max(r.width, r.height) * 2;
+    const s = document.createElement('span');
+    s.className = 'ripple';
+    s.style.cssText = 'width:'+d+'px;height:'+d+'px;left:'+(e.clientX-r.left-d/2)+'px;top:'+(e.clientY-r.top-d/2)+'px';
+    btn.appendChild(s);
+    s.addEventListener('animationend', () => s.remove());
+  });
+})();
+
+/* ====== botões magnéticos (desktop) ====== */
+(function(){
+  if(!matchMedia('(pointer:fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.btn-grad').forEach(btn => {
+    let raf = null;
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width/2) / r.width;
+      const y = (e.clientY - r.top - r.height/2) / r.height;
+      if(raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        btn.style.transform = 'translate(' + (x*6).toFixed(1) + 'px,' + (y*5).toFixed(1) + 'px)';
+      });
+    });
+    btn.addEventListener('mouseleave', () => {
+      if(raf) cancelAnimationFrame(raf);
+      btn.style.transform = '';
+    });
+  });
+})();
+
+/* ====== spotlight que segue o mouse nos cards ====== */
+(function(){
+  if(!matchMedia('(pointer:fine)').matches) return;
+  document.querySelectorAll('.service-card,.price-card,.quote-card,.step').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+})();
+
+/* ====== portfólio: placeholder para imagem ausente ====== */
+document.querySelectorAll('.pcard img').forEach(img => {
+  img.addEventListener('error', () => img.closest('.pcard').classList.add('missing'));
+});
+
+/* ====== portfólio: filtro por categoria + lightbox ====== */
+(function(){
+  const tabs = document.querySelectorAll('.ptab');
+  const indicator = document.querySelector('.ptab-indicator');
+  const items = document.querySelectorAll('.pcard');
+  const empty = document.getElementById('portfolioEmpty');
+  const grid = document.getElementById('portfolioGrid');
+
+  function moveIndicator(tab){
+    if(!indicator) return;
+    indicator.style.width = tab.offsetWidth + 'px';
+    indicator.style.transform = 'translateX(' + tab.offsetLeft + 'px)';
+  }
+  const activeTab = document.querySelector('.ptab.active');
+  if(activeTab) requestAnimationFrame(() => moveIndicator(activeTab));
+  addEventListener('resize', () => { const a = document.querySelector('.ptab.active'); if(a) moveIndicator(a); });
+
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => {
+      t.classList.toggle('active', t === tab);
+      t.setAttribute('aria-selected', t === tab);
+    });
+    moveIndicator(tab);
+    const f = tab.dataset.filter;
+    let shown = 0;
+    items.forEach(it => {
+      const show = f === 'all' || it.dataset.cat === f;
+      it.hidden = !show;
+      if(show){ it.style.animation = 'none'; void it.offsetWidth; it.style.animation = ''; it.classList.add('pop'); shown++; }
+      else it.classList.remove('pop');
+    });
+    if(grid) grid.classList.toggle('is-empty', shown === 0);
+    if(empty) empty.hidden = shown > 0;
+  }));
+
+  const lb = document.getElementById('lightbox');
+  if(!lb) return;
+  const lbImg = lb.querySelector('img');
+  const lbCap = lb.querySelector('figcaption');
+  function open(it){
+    const img = it.querySelector('img');
+    if(it.classList.contains('missing')) return;
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    const b = it.querySelector('b');
+    lbCap.textContent = b ? b.textContent : '';
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    lb.hidden = true;
+    document.body.style.overflow = '';
+  }
+  items.forEach(it => {
+    it.addEventListener('click', () => open(it));
+    it.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(it); } });
+  });
+  lb.addEventListener('click', close);
+  addEventListener('keydown', e => { if(e.key === 'Escape' && !lb.hidden) close(); });
+})();
+
+/* ====== stagger automático nas grades ====== */
+document.querySelectorAll('.services-grid,.steps,.quotes-grid,.pricing-grid').forEach(grid => {
+  [...grid.children].forEach((el, i) => { el.style.transitionDelay = (i * 70) + 'ms'; });
+});
+
+/* ====== parallax discreto no visual do hero ====== */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const scene = document.querySelector('.visual-scene');
+  if(!scene) return;
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = Math.min(scrollY, innerHeight);
+      scene.style.transform = 'translateY(' + (y * 0.08).toFixed(1) + 'px)';
+      ticking = false;
+    });
+  }, {passive:true});
+})();
 </script>
 </body>
 </html>
