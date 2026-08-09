@@ -1119,6 +1119,41 @@ footer{
 .meta-line b{font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--white);display:block}
 .meta-line span{font-size:.84rem;color:var(--text-muted)}
 
+/* faixa com a foto do time */
+.team-band{
+  position:relative;margin:0;overflow:hidden;
+  border-radius:var(--radius-lg);border:1px solid var(--card-border);
+  aspect-ratio:21/9;
+  background:
+    radial-gradient(700px 420px at 50% 30%,rgba(61,44,135,.5),transparent 70%),
+    linear-gradient(170deg,var(--plum-850),var(--plum-950));
+}
+.team-band img{width:100%;height:100%;object-fit:cover;display:block}
+.team-band::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 45%,rgba(10,10,14,.82) 100%);
+}
+.team-band-caption{
+  position:absolute;left:clamp(20px,3vw,38px);bottom:clamp(18px,3vw,32px);z-index:2;
+  display:flex;flex-direction:column;gap:3px;
+}
+.team-band-caption b{font-family:var(--font-display);font-weight:700;font-size:clamp(1.1rem,2vw,1.4rem);color:var(--white)}
+.team-band-caption span{font-size:.86rem;color:var(--white-70)}
+
+/* história + manifesto lado a lado */
+.about-story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
+.about-story-copy p{color:var(--text-muted);line-height:1.8;margin-top:16px}
+.manifesto--big{
+  margin:0;padding:8px 0 8px 32px;
+  font-size:clamp(1.5rem,2.8vw,2.1rem);line-height:1.25;
+}
+
+@media (max-width:860px){
+  .team-band{aspect-ratio:4/3}
+  .about-story{grid-template-columns:1fr;gap:28px}
+  .manifesto--big{padding-left:24px}
+}
+
 .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
 .about-text p{color:var(--text-muted);line-height:1.8;margin-top:18px}
 .about-text p b{color:var(--white)}

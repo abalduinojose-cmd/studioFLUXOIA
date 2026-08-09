@@ -44,41 +44,47 @@
   <div class="container about-hero">
     <div class="about-hero-copy reveal">
       <div class="kicker">Quem somos</div>
-      <h1 class="about-hero-title">Uma trajetória que virou um <span class="hl">novo conceito de agência</span></h1>
-      <p class="section-sub">A FluxoIA Studio nasceu da evolução de mais de 6 anos no marketing digital, unindo estratégia, desenvolvimento web e Inteligência Artificial para fazer empresas crescerem de forma inteligente.</p>
+      <h1 class="about-hero-title">Uma agência que nasceu da <span class="hl">prática, não da teoria</span></h1>
+      <p class="section-sub">Mais de 6 anos de estrada no marketing digital viraram um jeito próprio de trabalhar: design, tecnologia e IA no mesmo time, cuidando do seu projeto de ponta a ponta.</p>
     </div>
     <div class="about-hero-meta reveal reveal-d1">
       <div class="meta-line"><b>2020</b><span>início no marketing digital</span></div>
-      <div class="meta-line"><b>FluxoIA</b><span>o novo conceito de agência</span></div>
-      <div class="meta-line"><b>Hoje</b><span>sites, automação e IA</span></div>
+      <div class="meta-line"><b>FluxoIA</b><span>o estúdio ganha nome</span></div>
+      <div class="meta-line"><b>Hoje</b><span>sites, sistemas e IA</span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ FUNDADOR + MANIFESTO ============ -->
+<!-- ============ FOTO DA EQUIPE ============ -->
 <section id="quem-somos" class="section" style="padding-top:0">
-  <div class="container about-grid">
-    <div class="about-photo reveal">
-      <img src="img/anderson.jpg" alt="Anderson Uriguelle, fundador da FluxoIA Studio" width="367" height="472" loading="lazy">
-      <div class="founder-tag">
-        <b>Anderson Uriguelle</b>
-        <span>Fundador · FluxoIA Studio</span>
-      </div>
-    </div>
-    <div class="about-text reveal reveal-d1">
-      <p class="about-lead">Fundada por Anderson Uriguelle, a agência reúne conhecimento prático, inovação e tecnologia para oferecer soluções que realmente geram resultados para empresas.</p>
-      <blockquote class="manifesto">
-        <span class="manifesto-mark">“</span>
-        Não entregamos apenas um site ou uma automação. Entregamos ferramentas que conectam empresas ao futuro e transformam <span class="hl">visitantes em clientes.</span>
-      </blockquote>
-      <p>Acreditamos que a tecnologia deve trabalhar a favor dos negócios. Por isso, cada projeto é desenvolvido de forma personalizada, combinando estratégia, design, performance e automação para fortalecer a presença digital e ajudar nossos clientes a vender mais.</p>
-      <div class="hero-ctas" style="margin-top:32px">
+  <div class="container">
+    <figure class="team-band reveal">
+      <img src="img/equipe-time.jpg" alt="O time da FluxoIA Studio" loading="lazy">
+      <figcaption class="team-band-caption">
+        <b>O time da FluxoIA</b>
+        <span>Design, engenharia e conteúdo trabalhando lado a lado</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="section" style="padding-top:0">
+  <div class="container about-story">
+    <div class="about-story-copy reveal">
+      <p class="about-lead">A FluxoIA começou como o trabalho de uma pessoa só e virou um time. Hoje são três frentes que se completam: quem desenha e programa, quem cuida dos sistemas e da segurança, e quem dá voz à marca nas redes.</p>
+      <p>Cada projeto é feito sob medida. Sem modelo pronto e sem fórmula: a gente entende o seu negócio primeiro e só depois decide o caminho.</p>
+      <div class="hero-ctas" style="margin-top:30px">
         <a class="btn btn-grad" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Conheci%20a%20FluxoIA%20pelo%20site%20e%20quero%20conversar." target="_blank" rel="noopener">Falar com a FluxoIA
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn btn-ghost" href="/#servicos">Ver serviços</a>
+        <a class="btn btn-ghost" href="equipe">Conhecer o time</a>
       </div>
     </div>
+    <blockquote class="manifesto manifesto--big reveal reveal-d1">
+      <span class="manifesto-mark">“</span>
+      Não entregamos só um site ou uma automação. Entregamos ferramentas que transformam <span class="hl">visitantes em clientes.</span>
+    </blockquote>
   </div>
 </section>
 
@@ -241,6 +247,18 @@
   mq.addEventListener('change', () => {
     vids.forEach(v => { if(!v.src) return; mq.matches ? v.pause() : play(v); });
   });
+})();
+
+/* a faixa só aparece quando a foto do time existir:
+   basta salvar img/equipe-time.jpg que ela entra sozinha */
+(function(){
+  const band = document.querySelector('.team-band');
+  const img = band && band.querySelector('img');
+  if(!img) return;
+  const secao = band.closest('section');
+  const esconder = () => { if(secao) secao.hidden = true; };
+  if(img.complete && img.naturalWidth === 0) esconder();
+  img.addEventListener('error', esconder);
 })();
 
 const header = document.getElementById('header');
