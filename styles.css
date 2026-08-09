@@ -941,6 +941,39 @@ footer{
 }
 
 /* ==========================================================================
+   PÁGINA 404
+   ========================================================================== */
+.erro-page{
+  min-height:100svh;display:flex;align-items:center;padding:140px 0 80px;
+  background:
+    radial-gradient(900px 500px at 70% -10%,rgba(61,44,135,.34),transparent 64%),
+    radial-gradient(700px 440px at -5% 90%,rgba(155,30,99,.14),transparent 62%);
+}
+.erro-box{max-width:640px}
+.erro-code{
+  display:block;font-family:var(--font-display);font-weight:800;
+  font-size:clamp(4.5rem,14vw,9rem);line-height:.9;letter-spacing:-.04em;
+  color:var(--orange-500);opacity:.22;
+}
+.erro-title{
+  font-family:var(--font-display);font-weight:800;letter-spacing:-.03em;line-height:1.06;
+  font-size:clamp(2rem,5vw,3.2rem);margin-top:-8px;
+}
+.erro-text{margin-top:16px;color:var(--text-muted);line-height:1.7;font-size:1.05rem;max-width:46ch}
+.erro-ctas{margin-top:30px}
+.erro-links{
+  list-style:none;display:flex;flex-wrap:wrap;gap:10px;
+  margin-top:40px;padding-top:24px;border-top:1px solid var(--border);
+}
+.erro-links a{
+  display:inline-block;text-decoration:none;font-size:.86rem;color:var(--text-muted);
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:99px;padding:8px 16px;
+  transition:color var(--dur-fast),border-color var(--dur-fast);
+}
+.erro-links a:hover{color:var(--orange-400);border-color:rgba(255,157,46,.4)}
+
+/* ==========================================================================
    FLUTUANTE WHATSAPP
    ========================================================================== */
 #floatWa{

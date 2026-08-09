@@ -6,7 +6,9 @@
 <title>FluxoIA Studio — Tecnologia e IA para o próximo nível da sua empresa</title>
 <meta name="description" content="Criamos sites e landing pages de alta conversão, com IA e estratégia de dados. Transformamos visitantes em clientes.">
 <meta name="theme-color" content="#1a1149">
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="img/logo-dark.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -57,10 +59,6 @@
       </span>
       <h1 class="hero-h1">Levamos sua empresa para o <span class="hl">próximo nível</span> com tecnologia e IA</h1>
       <p class="hero-sub">Acreditamos que a tecnologia deve impulsionar negócios. Por isso, desenvolvemos soluções digitais inteligentes que aumentam a produtividade, fortalecem sua presença online e aceleram o crescimento da sua empresa.</p>
-      <div class="hero-stats">
-        <div class="hstat"><b data-count="6" data-suffix="+">0</b><span>anos de experiência</span></div>
-        <div class="hstat"><b data-count="24" data-suffix="/7">0</b><span>IA atendendo por você</span></div>
-        <div class="hstat"><b data-count="100" data-suffix="%">0</b><span>foco em conversão</span></div>
       </div>
     </div>
     <div class="hero-ctas">
@@ -277,24 +275,12 @@
   </div>
 </section>
 
-<!-- ============ NÚMEROS ============ -->
-<section class="section" style="padding-top:0">
-  <div class="container">
-    <div class="numbers reveal">
-      <div class="number"><b data-count="6" data-suffix="+">0</b><span>anos de experiência em marketing digital</span></div>
-      <div class="number"><b data-count="100" data-suffix="%">0</b><span>dos projetos focados em conversão</span></div>
-      <div class="number"><b data-count="24" data-suffix="/7">0</b><span>atendimento com IA, todos os dias</span></div>
-      <div class="number"><b data-count="3">0</b><span>frentes integradas: design, IA e tráfego</span></div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ DEPOIMENTOS ============ -->
 <section id="depoimentos" class="section" style="padding-top:0">
   <div class="container">
     <div class="section-head reveal">
       <div class="kicker">Depoimentos</div>
-      <h2 class="section-title">Quem já passou pelo <span class="hl">nosso fluxo</span></h2>
+      <h2 class="section-title">Quem já trabalhou <span class="hl">com a gente</span></h2>
     </div>
     <div class="quotes-grid">
       <div class="quote-card reveal">
@@ -565,26 +551,6 @@ const io = new IntersectionObserver(entries => {
 }, {threshold: 0.12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* ====== contadores ====== */
-function countUp(el, target, suffix, duration=1400){
-  const start = performance.now();
-  function tick(now){
-    const p = Math.min((now-start)/duration, 1);
-    const eased = 1 - Math.pow(1-p, 3);
-    el.textContent = Math.round(target*eased) + (suffix||'');
-    if(p<1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-const statIO = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      countUp(e.target, +e.target.dataset.count, e.target.dataset.suffix);
-      statIO.unobserve(e.target);
-    }
-  });
-},{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el => statIO.observe(el));
 
 /* ====== formulário -> WhatsApp ====== */
 document.getElementById('waForm').addEventListener('submit', e => {
