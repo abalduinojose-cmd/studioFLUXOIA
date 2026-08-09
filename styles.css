@@ -115,12 +115,29 @@ section[id]{scroll-margin-top:96px}
 /* destaque: acento laranja sólido (sem texto-gradiente neon) */
 .hl{color:var(--orange-500)}
 
-/* ---------- reveal on scroll (fade + slide + blur) ---------- */
+/* ---------- reveal on scroll ---------- */
 .reveal{
-  opacity:0;transform:translateY(30px);filter:blur(7px);
-  transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out),filter var(--dur-slow) var(--ease-out);
+  opacity:0;transform:translateY(22px) scale(.99);
+  transition:opacity .7s var(--ease-out),transform .9s var(--ease-out);
+  will-change:transform,opacity;
 }
-.reveal.in{opacity:1;transform:none;filter:none}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- transição entre seções: atmosfera + costura de luz ---------- */
+main > section{position:relative;isolation:isolate}
+/* costura: fio de luz no início de cada seção (menos o hero) */
+main > section:not(#hero)::after{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(1180px,92%);height:1px;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.07) 22%,rgba(255,157,46,.3) 50%,rgba(255,255,255,.07) 78%,transparent);
+}
+/* atmosfera alternada: cada seção herda um brilho suave em lado oposto */
+main > section:nth-of-type(even){
+  background-image:radial-gradient(760px 380px at 88% 0%,rgba(61,44,135,.14),transparent 62%);
+}
+main > section:nth-of-type(odd):not(#hero){
+  background-image:radial-gradient(760px 380px at 12% 0%,rgba(155,30,99,.1),transparent 62%);
+}
 
 /* ---------- barra de progresso de scroll ---------- */
 #scrollProgress{
@@ -257,6 +274,7 @@ header.scrolled{
   mask-image:radial-gradient(ellipse 85% 75% at 62% 18%,#000,transparent 78%);
 }
 #techCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
 .hero-grid{
   display:grid;grid-template-columns:1.12fr .88fr;column-gap:56px;row-gap:10px;
   align-items:center;grid-template-areas:"copy visual" "ctas visual";
@@ -315,13 +333,6 @@ header.scrolled{
 .hstat span{display:block;margin-top:6px;font-size:.78rem;color:var(--text-muted)}
 
 .btn-glow{position:relative;display:inline-flex;border-radius:99px}
-
-/* linha de confiança */
-.hero-trust{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:.86rem;color:var(--text-muted);font-weight:500;
-}
-.hero-trust svg{color:var(--wa)}
 
 /* indicador de scroll */
 .hero-scroll{
@@ -518,7 +529,7 @@ header.scrolled{
 /* ==========================================================================
    SERVIÇOS
    ========================================================================== */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .service-card{
   position:relative;display:flex;flex-direction:column;background:var(--card-bg);
   border:1px solid var(--card-border);
@@ -569,26 +580,50 @@ header.scrolled{
 /* ==========================================================================
    MÉTODO
    ========================================================================== */
-#metodo{background:linear-gradient(180deg,transparent,rgba(61,44,135,.12) 50%,transparent)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
-.step{
-  background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--card-radius);
-  padding:32px 26px;position:relative;overflow:hidden;
-  transition:transform var(--dur) var(--ease-out),border-color var(--dur);
+#metodo{background:linear-gradient(180deg,transparent,rgba(61,44,135,.1) 50%,transparent)}
+.metodo-head{max-width:640px}
+
+/* trilho de processo conectado */
+.steps{
+  list-style:none;display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0 26px;position:relative;
 }
-.step:hover{transform:translateY(-6px);border-color:rgba(255,157,46,.45)}
+.step{position:relative;padding-right:6px}
+/* cabeçalho: número + nó na linha */
+.step-head{position:relative;padding-bottom:26px}
 .step-num{
-  font-family:var(--font-display);font-weight:800;font-size:3rem;line-height:1;
-  color:var(--orange-500);margin-bottom:18px;
+  display:block;font-family:var(--font-display);font-weight:800;
+  font-size:.86rem;letter-spacing:.14em;color:var(--text-faint);
+  margin-bottom:18px;transition:color var(--dur);
 }
-.step h4{font-size:1.08rem;margin-bottom:9px}
-.step p{color:var(--text-muted);font-size:.89rem;line-height:1.65}
-.step::after{
-  content:'';position:absolute;left:26px;right:26px;bottom:0;height:2px;border-radius:2px;
-  background:var(--grad);transform:scaleX(0);transform-origin:left;
-  transition:transform var(--dur-slow) var(--ease-out);
+/* a linha do trilho */
+.step-head::before{
+  content:'';position:absolute;left:0;right:-26px;bottom:5px;height:1px;
+  background:var(--border-strong);
 }
-.step:hover::after{transform:scaleX(1)}
+.step:last-child .step-head::before{right:0}
+.step-dot{
+  position:absolute;left:0;bottom:0;width:11px;height:11px;border-radius:50%;
+  background:var(--plum-950);border:2px solid var(--border-strong);z-index:1;
+  transition:border-color var(--dur),background var(--dur),transform var(--dur) var(--ease-out),box-shadow var(--dur);
+}
+.step-body{padding-top:24px}
+.step h4{font-size:1.1rem;margin-bottom:9px;letter-spacing:-.01em;transition:color var(--dur)}
+.step p{color:var(--text-muted);font-size:.92rem;line-height:1.65;max-width:30ch}
+/* estados: o passo "acende" no hover */
+.step:hover .step-dot{
+  border-color:var(--orange-500);background:var(--orange-500);
+  transform:scale(1.25);box-shadow:0 0 0 5px rgba(255,157,46,.14);
+}
+.step:hover .step-num{color:var(--orange-500)}
+/* a linha se preenche progressivamente ao entrar na tela */
+.step .step-head::after{
+  content:'';position:absolute;left:0;right:-26px;bottom:5px;height:1px;
+  background:var(--orange-500);transform:scaleX(0);transform-origin:left;
+  transition:transform 1s var(--ease-out);
+}
+.step:last-child .step-head::after{right:0}
+.step.in .step-head::after{transform:scaleX(1)}
 
 /* ==========================================================================
    NÚMEROS
@@ -833,6 +868,22 @@ header.scrolled{
 .contact-form input::placeholder,.contact-form textarea::placeholder{color:rgba(255,255,255,.32)}
 .form-note{font-size:.76rem;color:var(--text-faint);text-align:center}
 
+/* botão de envio: rótulo à esquerda, ícone em pastilha à direita */
+.btn-submit{
+  width:100%;justify-content:space-between;gap:14px;
+  padding:8px 8px 8px 26px;font-size:1rem;
+  margin-top:4px;
+}
+.btn-submit-label{font-family:var(--font-display);font-weight:700;letter-spacing:-.01em}
+.btn-submit-icon{
+  display:flex;align-items:center;justify-content:center;flex:none;
+  width:42px;height:42px;border-radius:99px;
+  background:var(--blue-900);color:var(--orange-400);
+  transition:transform var(--dur) var(--ease-out);
+}
+.btn-submit:hover .btn-submit-icon{transform:translateX(4px)}
+.btn-submit:active .btn-submit-icon{transform:translateX(1px) scale(.94)}
+
 /* ==========================================================================
    FOOTER
    ========================================================================== */
@@ -908,6 +959,14 @@ footer{
 .page-hero{
   position:relative;padding:190px 0 70px;overflow:hidden;
   background:radial-gradient(760px 420px at 82% -10%,rgba(61,44,135,.28),transparent 62%);
+}
+
+/* ---------- vídeo no lugar da foto do fundador ---------- */
+.about-photo--video video{
+  width:100%;aspect-ratio:367/472;object-fit:cover;display:block;
+  border-radius:var(--radius);
+  border:1px solid var(--border-strong);box-shadow:0 30px 70px rgba(0,0,0,.55);
+  background:var(--plum-900);
 }
 .about-hero{display:grid;grid-template-columns:1.5fr .85fr;gap:56px;align-items:end}
 .about-hero-title{
@@ -1033,12 +1092,59 @@ footer{
   .services-grid,.quotes-grid,.steps,.numbers,.stats-grid,.pricing-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;gap:38px}
   .footer-bottom{flex-direction:column;align-items:center;text-align:center}
-  .section{padding:var(--space-12) 0}
-  #hero{padding:130px 0 70px}
+  /* ---- espaçamento compacto no mobile ---- */
+  .section{padding:56px 0}
+  .container{padding:0 18px}
+  .section-head{margin-bottom:28px}
+  .section-title{font-size:clamp(1.7rem,7vw,2.1rem)}
+  .section-sub{margin-top:12px;font-size:.95rem}
+  .kicker{margin-bottom:12px}
+  #hero{padding:104px 0 44px}
+  .hero-grid{row-gap:22px}
+  .hero-badge{margin-bottom:18px}
+  .hero-sub{margin-top:16px;font-size:1rem}
+  .hero-stats{margin-top:24px;padding:4px 22px}
+  .hstat{padding:14px 0}
+  .hero-ctas{margin-top:22px;gap:12px}
+  .services-grid,.quotes-grid,.pricing-grid,.stats-grid,.values-grid{gap:14px}
+  .service-card{padding:26px 22px}
+  .service-icon{width:44px;height:44px;border-radius:12px;margin-bottom:16px}
+  .service-card h3{font-size:1.05rem}
+  .service-cta{padding-top:16px}
+  .quem-grid{gap:24px}
+  .check-list{margin:20px 0 24px;gap:11px}
+  .check-list li{font-size:.94rem}
+  .numbers{padding:28px 24px;gap:22px}
+  .quote-card,.price-card{padding:26px 22px}
+  .price-list{margin:18px 0 22px}
+  .portfolio-tabs{margin-bottom:26px}
+  footer{padding:56px 0 28px}
+  .footer-grid{gap:28px}
+  .footer-bottom{margin-top:34px;padding-top:20px}
+  .page-hero{padding:112px 0 36px}
+  .timeline{padding-left:0}
+  .tl-item{padding:0 0 18px 60px}
+  .tl-card{padding:18px 20px}
+  /* método: trilho vira vertical no mobile */
+  .steps{gap:0}
+  .step{display:grid;grid-template-columns:auto 1fr;column-gap:16px;padding:0 0 20px}
+  .step:last-child{padding-bottom:0}
+  .step-head{padding:0;display:flex;align-items:flex-start;justify-content:center;width:22px}
+  .step-num{display:none}
+  .step-head::before,.step .step-head::after{
+    left:50%;right:auto;top:16px;bottom:-20px;width:1px;height:auto;transform:translateX(-50%);
+  }
+  .step .step-head::after{transform:translateX(-50%) scaleY(0);transform-origin:top;transition:transform .8s var(--ease-out)}
+  .step.in .step-head::after{transform:translateX(-50%) scaleY(1)}
+  .step:last-child .step-head::before,.step:last-child .step-head::after{display:none}
+  .step-dot{left:50%;top:5px;bottom:auto;transform:translateX(-50%)}
+  .step:hover .step-dot{transform:translateX(-50%) scale(1.25)}
+  .step-body{padding-top:0}
+  .step p{max-width:none}
   .chip-1{top:4%;right:-4px}
   .chip-2{bottom:6%;left:-4px}
   .blob{filter:blur(70px)}
-  .ticker{padding:18px 0}
+  .ticker{padding:14px 0}
   .ticker-item{font-size:.8rem;padding:9px 16px}
   .scene-ring-2{display:none}
 
