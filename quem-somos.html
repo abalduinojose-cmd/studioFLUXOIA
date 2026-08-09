@@ -27,6 +27,7 @@
       <li><a href="index.html#servicos">Serviços</a></li>
       <li><a href="index.html#metodo">Método</a></li>
       <li><a href="quem-somos.html" aria-current="page">Quem somos</a></li>
+      <li><a href="equipe.html">Equipe</a></li>
       <li><a href="index.html#contato">Contato</a></li>
     </ul>
     <div style="display:flex;gap:12px;align-items:center">
@@ -57,11 +58,8 @@
 <!-- ============ FUNDADOR + MANIFESTO ============ -->
 <section id="quem-somos" class="section" style="padding-top:0">
   <div class="container about-grid">
-    <div class="about-photo about-photo--video reveal">
-      <video id="phVideo" muted loop playsinline autoplay preload="auto"
-             poster="img/anderson.jpg" aria-label="Bastidores da FluxoIA Studio: desenvolvimento em andamento">
-        <source src="img/hero-bg.mp4" type="video/mp4">
-      </video>
+    <div class="about-photo reveal">
+      <img src="img/anderson.jpg" alt="Anderson Uriguelle, fundador da FluxoIA Studio" width="367" height="472" loading="lazy">
       <div class="founder-tag">
         <b>Anderson Uriguelle</b>
         <span>Fundador · FluxoIA Studio</span>
@@ -193,6 +191,7 @@
           <li><a href="index.html#metodo">Método</a></li>
           <li><a href="index.html#planos">Planos</a></li>
           <li><a href="quem-somos.html">Quem somos</a></li>
+          <li><a href="equipe.html">Equipe</a></li>
           <li><a href="index.html#contato">Contato</a></li>
         </ul>
       </nav>
@@ -219,21 +218,29 @@
 </a>
 
 <script>
-/* vídeo do topo: pausa com "reduzir movimento" e quando sai da tela */
+/* vídeos da equipe: só baixam quando entram na tela (poupa dados) */
 (function(){
-  const v = document.getElementById('phVideo');
-  if(!v) return;
+  const vids = document.querySelectorAll('.team-video[data-src]');
+  if(!vids.length) return;
   const mq = matchMedia('(prefers-reduced-motion: reduce)');
-  const play = () => { const p = v.play(); if(p) p.catch(()=>{}); };
-  function apply(){ mq.matches ? v.pause() : play(); }
-  apply();
-  mq.addEventListener('change', apply);
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(es => es.forEach(e => {
-      if(mq.matches) return;
-      e.isIntersecting ? play() : v.pause();
-    }), {threshold:.05}).observe(v);
+  const play = v => { const p = v.play(); if(p) p.catch(()=>{}); };
+
+  if(!('IntersectionObserver' in window)){
+    vids.forEach(v => { v.src = v.dataset.src; if(!mq.matches) play(v); });
+    return;
   }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if(e.isIntersecting){
+      if(!v.src) v.src = v.dataset.src;   /* baixa só agora */
+      if(!mq.matches) play(v);
+    } else if(v.src) v.pause();
+  }), {threshold:.25, rootMargin:'200px'});
+  vids.forEach(v => io.observe(v));
+
+  mq.addEventListener('change', () => {
+    vids.forEach(v => { if(!v.src) return; mq.matches ? v.pause() : play(v); });
+  });
 })();
 
 const header = document.getElementById('header');

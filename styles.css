@@ -961,12 +961,69 @@ footer{
   background:radial-gradient(760px 420px at 82% -10%,rgba(61,44,135,.28),transparent 62%);
 }
 
-/* ---------- vídeo no lugar da foto do fundador ---------- */
-.about-photo--video video{
-  width:100%;aspect-ratio:367/472;object-fit:cover;display:block;
-  border-radius:var(--radius);
-  border:1px solid var(--border-strong);box-shadow:0 30px 70px rgba(0,0,0,.55);
-  background:var(--plum-900);
+/* ---------- equipe ---------- */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.team-card{
+  margin:0;position:relative;overflow:hidden;
+  border-radius:22px;border:1px solid var(--card-border);background:var(--card-bg);
+  transition:transform var(--dur) var(--ease-out),border-color var(--dur),box-shadow var(--dur);
+}
+.team-card:hover{
+  transform:translateY(-6px);border-color:rgba(255,157,46,.5);
+  box-shadow:0 22px 52px rgba(0,0,0,.5);
+}
+.team-media{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--plum-900)}
+.team-video{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.9) contrast(1.03);
+  transition:transform .7s var(--ease-out);
+}
+.team-card:hover .team-video{transform:scale(1.04)}
+/* gradiente para a legenda respirar sobre a imagem */
+.team-media::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 45%,rgba(10,10,14,.72) 100%);
+}
+/* card sem vídeo: monograma */
+.team-media--mono{
+  display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(420px 300px at 50% 34%,rgba(61,44,135,.42),transparent 68%),
+    var(--plum-900);
+}
+.team-mono{
+  font-family:var(--font-display);font-weight:800;font-size:clamp(4rem,9vw,6rem);
+  line-height:1;color:var(--orange-500);opacity:.9;
+}
+.team-mono-icon{
+  position:absolute;bottom:22%;left:50%;transform:translateX(-50%);
+  color:var(--orange-400);opacity:.7;
+}
+.team-info{
+  position:relative;padding:18px 22px 20px;
+  display:flex;flex-direction:column;gap:3px;
+}
+.team-info b{font-family:var(--font-display);font-weight:700;font-size:1.06rem;color:var(--white);letter-spacing:-.01em}
+.team-info span{font-size:.84rem;color:var(--orange-400);font-weight:500;line-height:1.4}
+
+/* CTA da página de equipe */
+.team-cta{
+  display:grid;grid-template-columns:1.3fr auto;gap:36px;align-items:center;
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:var(--radius-lg);padding:clamp(30px,4vw,52px);
+}
+.team-cta .section-title{font-size:clamp(1.6rem,3vw,2.2rem)}
+.team-cta .section-sub{margin-top:12px}
+.team-cta-actions{display:flex;flex-direction:column;gap:12px;min-width:230px}
+.team-cta-actions .btn{width:100%}
+
+@media (max-width:860px){
+  .team-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .team-cta{grid-template-columns:1fr;gap:24px}
+  .team-cta-actions{min-width:0}
+}
+@media (max-width:560px){
+  .team-grid{grid-template-columns:1fr;max-width:340px;margin:0 auto}
 }
 .about-hero{display:grid;grid-template-columns:1.5fr .85fr;gap:56px;align-items:end}
 .about-hero-title{
