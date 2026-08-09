@@ -972,7 +972,14 @@ footer{
   transform:translateY(-6px);border-color:rgba(255,157,46,.5);
   box-shadow:0 22px 52px rgba(0,0,0,.5);
 }
-.team-media{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--plum-900)}
+/* fundo da marca: aparece enquanto o vídeo carrega, no lugar de um retângulo preto */
+.team-media{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+  background:
+    radial-gradient(420px 300px at 50% 36%,rgba(61,44,135,.5),transparent 70%),
+    linear-gradient(170deg,var(--plum-850),var(--plum-950));
+}
+.team-video{background:transparent}
 .team-video{
   width:100%;height:100%;object-fit:cover;display:block;
   filter:saturate(.9) contrast(1.03);

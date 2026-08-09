@@ -61,7 +61,7 @@
     <div class="team-grid">
       <figure class="team-card reveal">
         <div class="team-media">
-          <video class="team-video" muted loop playsinline preload="none"
+          <video class="team-video" autoplay muted loop playsinline preload="none"
                  poster="img/anderson.jpg"
                  data-src="img/equipe-anderson.mp4"
                  aria-label="Anderson Uriguelle trabalhando em desenvolvimento"></video>
@@ -74,7 +74,7 @@
 
       <figure class="team-card reveal reveal-d1">
         <div class="team-media">
-          <video class="team-video" muted loop playsinline preload="none"
+          <video class="team-video" autoplay muted loop playsinline preload="none"
                  data-src="img/equipe-ana.mp4"
                  aria-label="Ana criando conteúdo visual"></video>
         </div>
@@ -185,16 +185,18 @@
   const play = v => { const p = v.play(); if(p) p.catch(()=>{}); };
 
   if(!('IntersectionObserver' in window)){
-    vids.forEach(v => { v.src = v.dataset.src; if(!mq.matches) play(v); });
+    vids.forEach(v => { v.src = v.dataset.src; v.load(); mq.matches ? v.pause() : play(v); });
     return;
   }
   const io = new IntersectionObserver(es => es.forEach(e => {
     const v = e.target;
     if(e.isIntersecting){
-      if(!v.src) v.src = v.dataset.src;   /* baixa só agora */
-      if(!mq.matches) play(v);
+      if(!v.src){ v.src = v.dataset.src; v.load(); }  /* baixa só agora */
+      /* com "reduzir movimento" o vídeo carrega mas fica parado no 1º quadro,
+         em vez de deixar um retângulo vazio no lugar da pessoa */
+      mq.matches ? v.pause() : play(v);
     } else if(v.src) v.pause();
-  }), {threshold:.25, rootMargin:'200px'});
+  }), {threshold:.25, rootMargin:'300px'});
   vids.forEach(v => io.observe(v));
 
   mq.addEventListener('change', () => {
