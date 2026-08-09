@@ -19,16 +19,16 @@
 <!-- ============ HEADER ============ -->
 <header id="header">
   <div class="header-inner">
-    <a class="logo" href="index.html">
+    <a class="logo" href="/">
       <img src="img/logo-white.png" width="34" height="34" alt="Logo FluxoIA Studio">
       <span>Fluxo<em>IA</em> Studio</span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html#servicos">Serviços</a></li>
-      <li><a href="index.html#metodo">Método</a></li>
-      <li><a href="quem-somos.html">Quem somos</a></li>
-      <li><a href="equipe.html" aria-current="page">Equipe</a></li>
-      <li><a href="index.html#contato">Contato</a></li>
+      <li><a href="/#servicos">Serviços</a></li>
+      <li><a href="/#metodo">Método</a></li>
+      <li><a href="quem-somos">Quem somos</a></li>
+      <li><a href="equipe" aria-current="page">Equipe</a></li>
+      <li><a href="/#contato">Contato</a></li>
     </ul>
     <div style="display:flex;gap:12px;align-items:center">
       <a class="btn btn-grad btn-sm header-cta" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20falar%20com%20a%20FluxoIA%20Studio." target="_blank" rel="noopener">Fale Conosco</a>
@@ -73,18 +73,6 @@
       </figure>
 
       <figure class="team-card reveal reveal-d1">
-        <div class="team-media">
-          <video class="team-video" autoplay muted loop playsinline preload="metadata"
-                 data-src="img/equipe-ana.mp4"
-                 aria-label="Ana criando conteúdo visual"></video>
-        </div>
-        <figcaption class="team-info">
-          <b>Ana</b>
-          <span>Social Media · Fotógrafa</span>
-        </figcaption>
-      </figure>
-
-      <figure class="team-card reveal reveal-d2">
         <div class="team-media team-media--mono">
           <span class="team-mono" aria-hidden="true">J</span>
           <svg class="team-mono-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -95,6 +83,18 @@
         <figcaption class="team-info">
           <b>Jorcelio</b>
           <span>Back End · Segurança · Desenvolvimento de sistemas</span>
+        </figcaption>
+      </figure>
+
+      <figure class="team-card reveal reveal-d2">
+        <div class="team-media">
+          <video class="team-video" autoplay muted loop playsinline preload="metadata"
+                 data-src="img/equipe-ana.mp4"
+                 aria-label="Ana criando conteúdo visual"></video>
+        </div>
+        <figcaption class="team-info">
+          <b>Ana</b>
+          <span>Social Media · Fotógrafa</span>
         </figcaption>
       </figure>
     </div>
@@ -114,7 +114,7 @@
           Falar com a equipe
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn btn-ghost" href="index.html#servicos">Ver serviços</a>
+        <a class="btn btn-ghost" href="/#servicos">Ver serviços</a>
       </div>
     </div>
   </div>
@@ -129,7 +129,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="logo" href="index.html">
+        <a class="logo" href="/">
           <img src="img/logo-white.png" width="34" height="34" alt="Logo FluxoIA Studio">
           <span>Fluxo<em>IA</em> Studio</span>
         </a>
@@ -146,21 +146,21 @@
       <nav class="footer-col" aria-label="Navegação do rodapé">
         <h5>Navegação</h5>
         <ul>
-          <li><a href="index.html#servicos">Serviços</a></li>
-          <li><a href="index.html#metodo">Método</a></li>
-          <li><a href="index.html#planos">Planos</a></li>
-          <li><a href="quem-somos.html">Quem somos</a></li>
-          <li><a href="equipe.html">Equipe</a></li>
-          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="/#servicos">Serviços</a></li>
+          <li><a href="/#metodo">Método</a></li>
+          <li><a href="/#planos">Planos</a></li>
+          <li><a href="quem-somos">Quem somos</a></li>
+          <li><a href="equipe">Equipe</a></li>
+          <li><a href="/#contato">Contato</a></li>
         </ul>
       </nav>
       <nav class="footer-col" aria-label="Serviços no rodapé">
         <h5>Soluções</h5>
         <ul>
-          <li><a href="index.html#servicos">Sites Institucionais</a></li>
-          <li><a href="index.html#servicos">Landing Pages</a></li>
-          <li><a href="index.html#servicos">Automação com IA</a></li>
-          <li><a href="index.html#servicos">Automação Comercial</a></li>
+          <li><a href="/#servicos">Sites Institucionais</a></li>
+          <li><a href="/#servicos">Landing Pages</a></li>
+          <li><a href="/#servicos">Automação com IA</a></li>
+          <li><a href="/#servicos">Automação Comercial</a></li>
         </ul>
       </nav>
     </div>
@@ -177,31 +177,24 @@
 </a>
 
 <script>
-/* vídeos da equipe: só baixam quando entram na tela (poupa dados) */
+/* vídeos da equipe: só baixam quando entram na tela (poupa dados) e ficam rodando */
 (function(){
   const vids = document.querySelectorAll('.team-video[data-src]');
   if(!vids.length) return;
-  const mq = matchMedia('(prefers-reduced-motion: reduce)');
   const play = v => { const p = v.play(); if(p) p.catch(()=>{}); };
 
   if(!('IntersectionObserver' in window)){
-    vids.forEach(v => { v.src = v.dataset.src; v.load(); mq.matches ? v.pause() : play(v); });
+    vids.forEach(v => { v.src = v.dataset.src; v.load(); play(v); });
     return;
   }
   const io = new IntersectionObserver(es => es.forEach(e => {
     const v = e.target;
     if(e.isIntersecting){
       if(!v.src){ v.src = v.dataset.src; v.load(); }  /* baixa só agora */
-      /* com "reduzir movimento" o vídeo carrega mas fica parado no 1º quadro,
-         em vez de deixar um retângulo vazio no lugar da pessoa */
-      mq.matches ? v.pause() : play(v);
-    } else if(v.src) v.pause();
+      play(v);
+    } else if(v.src) v.pause();                       /* poupa fora da tela */
   }), {threshold:.25, rootMargin:'300px'});
   vids.forEach(v => io.observe(v));
-
-  mq.addEventListener('change', () => {
-    vids.forEach(v => { if(!v.src) return; mq.matches ? v.pause() : play(v); });
-  });
 })();
 
 /* ====== header ====== */
