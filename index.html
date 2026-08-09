@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="img/logo-dark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/agente-ia.webp" type="image/webp">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -51,7 +51,10 @@
   <canvas id="techCanvas" aria-hidden="true"></canvas>
   <div class="container hero-grid">
     <div class="hero-copy">
-      <span class="hero-badge"><span class="dot"></span> Sites a partir de R$997</span>
+      <span class="hero-badge">
+        <span class="dot"></span> Sites a partir de <strong>R$997</strong>
+        <svg class="badge-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
       <h1 class="hero-h1">Levamos sua empresa para o <span class="hl">próximo nível</span> com tecnologia e IA</h1>
       <p class="hero-sub">Acreditamos que a tecnologia deve impulsionar negócios. Por isso, desenvolvemos soluções digitais inteligentes que aumentam a produtividade, fortalecem sua presença online e aceleram o crescimento da sua empresa.</p>
       <div class="hero-stats">
@@ -61,11 +64,17 @@
       </div>
     </div>
     <div class="hero-ctas">
-      <a class="btn btn-grad" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20solicitar%20um%20or%C3%A7amento%20de%20site%20ou%20landing%20page." target="_blank" rel="noopener">
-        Solicitar Orçamento
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+      <span class="btn-glow">
+        <a class="btn btn-grad" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20solicitar%20um%20or%C3%A7amento%20de%20site%20ou%20landing%20page." target="_blank" rel="noopener">
+          Solicitar Orçamento
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </span>
       <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+      <span class="hero-trust">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2z"/></svg>
+        Resposta rápida no WhatsApp
+      </span>
     </div>
     <div class="hero-visual reveal">
       <div class="visual-scene" aria-hidden="true">
@@ -90,6 +99,10 @@
       </div>
     </div>
   </div>
+  <a class="hero-scroll" href="#servicos" aria-label="Rolar para os serviços">
+    <span>Role para explorar</span>
+    <span class="scroll-mouse"><span class="scroll-wheel"></span></span>
+  </a>
 </section>
 
 <!-- ============ TICKER ============ -->
@@ -114,6 +127,54 @@
   </div>
 </div>
 
+<!-- ============ É PARA VOCÊ ============ -->
+<section id="para-quem" class="section">
+  <div class="container quem-grid">
+    <div class="quem-visual reveal" aria-hidden="true">
+      <div class="quem-glow"></div>
+      <div class="qcard qcard-a">
+        <div class="qcard-icon glow-o">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        </div>
+        <b>Presença digital</b>
+        <span>site no ar, rápido e otimizado</span>
+      </div>
+      <div class="qcard qcard-b">
+        <div class="qcard-icon glow-m">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        </div>
+        <b>+ Conversão</b>
+        <span>visitantes viram clientes</span>
+      </div>
+      <div class="qcard qcard-c">
+        <div class="qcard-icon glow-v">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V5M12 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+        </div>
+        <b>IA 24/7</b>
+        <span>atende enquanto você dorme</span>
+      </div>
+    </div>
+
+    <div class="quem-content reveal">
+      <div class="kicker">É para você?</div>
+      <h2 class="section-title">Feito para quem quer <span class="hl">crescer de verdade</span></h2>
+      <p class="section-sub">Nossas soluções são ideais para você que quer levar o negócio ao próximo nível, com organização, tecnologia e resultado. Do primeiro clique ao pós-venda.</p>
+      <ul class="check-list">
+        <li><span class="chk"></span>Quer sair do zero com uma presença digital profissional</li>
+        <li><span class="chk"></span>Precisa de um site rápido e otimizado para o Google</li>
+        <li><span class="chk"></span>Deseja transformar visitantes em clientes de verdade</li>
+        <li><span class="chk"></span>Quer atendimento automático 24 horas por dia com IA</li>
+        <li><span class="chk"></span>Busca campanhas de tráfego que realmente vendem</li>
+        <li><span class="chk"></span>Quer uma marca forte, memorável e profissional</li>
+      </ul>
+      <a class="btn btn-grad" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20levar%20meu%20neg%C3%B3cio%20para%20o%20pr%C3%B3ximo%20n%C3%ADvel." target="_blank" rel="noopener">
+        Quero começar
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ SERVIÇOS ============ -->
 <section id="servicos" class="section">
   <div class="container">
@@ -133,6 +194,7 @@
         <h3>Sites Institucionais</h3>
         <p>Transforme visitantes em clientes com um site de alta performance, desenvolvido para transmitir autoridade, gerar confiança e totalmente otimizado para o Google.</p>
         <div class="service-tags"><span>Design sob medida</span><span>SEO</span><span>Mobile first</span></div>
+        <a class="service-cta" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20um%20site%20institucional." target="_blank" rel="noopener">Quero esse serviço <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="service-card reveal reveal-d1">
         <span class="service-num">02</span>
@@ -142,6 +204,7 @@
         <h3>Landing Pages</h3>
         <p>Páginas estrategicamente desenvolvidas para um único objetivo: converter. Perfeitas para campanhas de tráfego pago, lançamentos, captação de leads e aumento das vendas.</p>
         <div class="service-tags"><span>Alta conversão</span><span>Copy persuasiva</span><span>Entrega rápida</span></div>
+        <a class="service-cta" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20uma%20landing%20page." target="_blank" rel="noopener">Quero esse serviço <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="service-card reveal reveal-d2">
         <span class="service-num">03</span>
@@ -151,6 +214,7 @@
         <h3>Automação com IA</h3>
         <p>Atendimento que nunca para. Automatize seu site e WhatsApp com Inteligência Artificial para responder instantaneamente, qualificar leads, agendar compromissos e aumentar suas oportunidades de venda, 24 horas por dia.</p>
         <div class="service-tags"><span>Chatbot</span><span>WhatsApp</span><span>Qualificação</span></div>
+        <a class="service-cta" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20automa%C3%A7%C3%A3o%20com%20IA." target="_blank" rel="noopener">Quero esse serviço <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="service-card reveal">
         <span class="service-num">04</span>
@@ -160,6 +224,7 @@
         <h3>Automação Comercial</h3>
         <p>Fluxos automáticos de follow-up, agendamento e recuperação de contatos que esfriaram no funil.</p>
         <div class="service-tags"><span>Follow-up</span><span>CRM</span><span>Integrações</span></div>
+        <a class="service-cta" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20automa%C3%A7%C3%A3o%20comercial." target="_blank" rel="noopener">Quero esse serviço <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="service-card reveal reveal-d1">
         <span class="service-num">05</span>
@@ -169,6 +234,7 @@
         <h3>Marketing Digital</h3>
         <p>Gerenciamos suas redes sociais e campanhas estratégicas para fortalecer sua presença digital, criar conexões reais e posicionar sua marca diante das pessoas certas, todos os dias.</p>
         <div class="service-tags"><span>Instagram</span><span>Meta Ads</span><span>Google Ads</span></div>
+        <a class="service-cta" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20marketing%20digital." target="_blank" rel="noopener">Quero esse serviço <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="service-card reveal reveal-d2">
         <span class="service-num">06</span>
@@ -178,6 +244,7 @@
         <h3>Identidade Visual</h3>
         <p>Sua marca tem uma história. Nossa missão é transformá-la em uma identidade visual forte, memorável e profissional, capaz de transmitir confiança, autoridade e criar conexão com o público ideal.</p>
         <div class="service-tags"><span>Marca</span><span>Conteúdo</span><span>Posicionamento</span></div>
+        <a class="service-cta" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20uma%20identidade%20visual." target="_blank" rel="noopener">Quero esse serviço <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </div>
