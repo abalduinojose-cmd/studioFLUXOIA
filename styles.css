@@ -1006,29 +1006,6 @@ footer{
   position:absolute;bottom:22%;left:50%;transform:translateX(-50%);
   color:var(--orange-400);opacity:.7;
 }
-/* índice e status sobre a mídia */
-.team-index{
-  position:absolute;top:14px;left:16px;z-index:2;
-  font-family:var(--font-display);font-weight:800;font-size:.76rem;letter-spacing:.16em;
-  color:var(--white-70);
-}
-.team-status{
-  position:absolute;top:12px;right:14px;z-index:2;
-  display:inline-flex;align-items:center;gap:7px;
-  font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--white-70);
-  background:rgba(10,10,14,.55);border:1px solid var(--border-strong);
-  border-radius:99px;padding:5px 11px;backdrop-filter:blur(8px);
-}
-.team-status i{
-  width:6px;height:6px;border-radius:50%;background:#3ddc84;
-  box-shadow:0 0 0 0 rgba(61,220,132,.5);animation:statusPulse 2.4s ease-in-out infinite;
-}
-@keyframes statusPulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(61,220,132,.5)}
-  50%{box-shadow:0 0 0 5px rgba(61,220,132,0)}
-}
-
 .team-info{
   position:relative;padding:20px 22px 22px;
   display:flex;flex-direction:column;gap:0;
@@ -1062,19 +1039,71 @@ footer{
 
 /* CTA da página de equipe */
 .team-cta{
-  display:grid;grid-template-columns:1.3fr auto;gap:36px;align-items:center;
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:var(--radius-lg);padding:clamp(30px,4vw,52px);
+  position:relative;overflow:hidden;isolation:isolate;
+  background:linear-gradient(160deg,#171331,#100d1f 62%);
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-lg);padding:clamp(30px,4vw,56px);
 }
-.team-cta .section-title{font-size:clamp(1.6rem,3vw,2.2rem)}
-.team-cta .section-sub{margin-top:12px}
-.team-cta-actions{display:flex;flex-direction:column;gap:12px;min-width:230px}
-.team-cta-actions .btn{width:100%}
+/* grade tech sutil + brilho */
+.team-cta::before{
+  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(106,85,201,.1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(106,85,201,.1) 1px,transparent 1px);
+  background-size:38px 38px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 80% at 12% 0%,#000,transparent 72%);
+  mask-image:radial-gradient(ellipse 70% 80% at 12% 0%,#000,transparent 72%);
+}
+.team-cta-glow{
+  position:absolute;right:-8%;top:-40%;width:520px;height:520px;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,157,46,.16),transparent 66%);
+  filter:blur(30px);
+}
+.team-cta-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:clamp(28px,4vw,56px);align-items:center}
+
+.team-cta-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--orange-400);
+  background:rgba(255,157,46,.08);border:1px solid rgba(255,157,46,.24);
+  border-radius:99px;padding:8px 15px;
+}
+.team-cta-title{
+  font-family:var(--font-display);font-weight:800;letter-spacing:-.025em;line-height:1.08;
+  font-size:clamp(1.7rem,3.2vw,2.5rem);margin-top:18px;max-width:18ch;
+}
+.team-cta-text{margin-top:14px;color:var(--text-muted);line-height:1.7;max-width:46ch}
+.team-cta-list{list-style:none;margin-top:22px;display:grid;gap:11px}
+.team-cta-list li{
+  display:flex;align-items:flex-start;gap:11px;
+  font-size:.93rem;color:var(--text);line-height:1.5;
+}
+.cta-chk{
+  flex:none;width:20px;height:20px;margin-top:1px;border-radius:50%;position:relative;
+  background:rgba(255,157,46,.14);border:1px solid rgba(255,157,46,.4);
+}
+.cta-chk::after{
+  content:'';position:absolute;left:6px;top:3.5px;width:5px;height:8px;
+  border:solid var(--orange-400);border-width:0 2px 2px 0;transform:rotate(45deg);
+}
+
+/* painel de ação */
+.team-cta-panel{
+  background:rgba(10,10,14,.5);border:1px solid var(--border-strong);
+  border-radius:var(--radius);padding:28px 26px;
+  display:flex;flex-direction:column;gap:12px;backdrop-filter:blur(10px);
+}
+.panel-label{
+  font-family:var(--font-display);font-weight:700;font-size:.74rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--orange-400);
+}
+.panel-text{font-size:.92rem;color:var(--text-muted);line-height:1.6;margin-bottom:6px}
+.team-cta-panel .btn{width:100%}
 
 @media (max-width:860px){
   .team-grid{grid-template-columns:1fr 1fr;gap:14px}
-  .team-cta{grid-template-columns:1fr;gap:24px}
-  .team-cta-actions{min-width:0}
+  .team-cta-grid{grid-template-columns:1fr;gap:28px}
+  .team-cta-title{max-width:none}
 }
 @media (max-width:560px){
   .team-grid{grid-template-columns:1fr;max-width:340px;margin:0 auto}
