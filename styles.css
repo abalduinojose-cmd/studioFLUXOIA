@@ -980,6 +980,8 @@ footer{
     linear-gradient(170deg,var(--plum-850),var(--plum-950));
 }
 .team-video{background:transparent}
+/* enquadra mais alto no vídeo, para a cabeça caber inteira no quadrado */
+.team-video--alto{object-position:center 18%}
 .team-video{
   width:100%;height:100%;object-fit:cover;display:block;
   filter:saturate(.9) contrast(1.03);
@@ -1140,18 +1142,58 @@ footer{
 .team-band-caption b{font-family:var(--font-display);font-weight:700;font-size:clamp(1.1rem,2vw,1.4rem);color:var(--white)}
 .team-band-caption span{font-size:.86rem;color:var(--white-70)}
 
-/* história + manifesto lado a lado */
-.about-story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
-.about-story-copy p{color:var(--text-muted);line-height:1.8;margin-top:16px}
-.manifesto--big{
-  margin:0;padding:8px 0 8px 32px;
-  font-size:clamp(1.5rem,2.8vw,2.1rem);line-height:1.25;
+/* história em formato editorial */
+.story{max-width:1000px;margin:0 auto}
+.story-lead{
+  font-size:clamp(1.15rem,2vw,1.4rem);line-height:1.6;color:var(--text);
+  max-width:60ch;
 }
+.story-lead strong{color:var(--orange-500);font-weight:700}
+.story-cols{
+  margin-top:34px;display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(24px,4vw,52px);
+}
+.story-cols p{color:var(--text-muted);line-height:1.85;font-size:.98rem}
+/* fio de abertura sobre o texto */
+.story::before{
+  content:'';display:block;width:52px;height:2px;border-radius:2px;
+  background:var(--orange-500);margin-bottom:26px;
+}
+
+/* manifesto como declaração de página inteira */
+.manifesto-band{position:relative}
+.manifesto-hero{
+  position:relative;margin:0;text-align:center;
+  padding:clamp(40px,6vw,70px) clamp(22px,5vw,60px);
+  background:linear-gradient(160deg,#171331,#100d1f 65%);
+  border:1px solid var(--card-border);border-radius:var(--radius-lg);
+  overflow:hidden;isolation:isolate;
+}
+.manifesto-hero::before{
+  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(600px 320px at 50% -10%,rgba(255,157,46,.14),transparent 68%);
+}
+.manifesto-hero p{
+  font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1.22;color:var(--white);
+  max-width:22ch;margin:0 auto;text-wrap:balance;
+}
+.manifesto-hero .manifesto-mark{
+  position:static;display:block;font-family:var(--font-display);
+  font-size:clamp(2.6rem,5vw,3.6rem);line-height:.6;color:var(--orange-500);
+  opacity:.55;margin-bottom:18px;
+}
+.manifesto-foot{
+  margin-top:36px;display:flex;align-items:center;justify-content:space-between;
+  gap:clamp(20px,4vw,48px);flex-wrap:wrap;
+}
+.manifesto-foot p{color:var(--text-muted);line-height:1.75;max-width:52ch;font-size:1rem}
+.manifesto-foot .hero-ctas{margin-top:0}
 
 @media (max-width:860px){
   .team-band{aspect-ratio:4/3}
-  .about-story{grid-template-columns:1fr;gap:28px}
-  .manifesto--big{padding-left:24px}
+  .story-cols{grid-template-columns:1fr;gap:18px}
+  .manifesto-foot{flex-direction:column;align-items:flex-start}
 }
 
 .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
