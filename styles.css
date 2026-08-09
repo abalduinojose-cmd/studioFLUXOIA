@@ -1196,6 +1196,12 @@ footer{
   gap:clamp(24px,4vw,52px);
 }
 .story-cols p{color:var(--text-muted);line-height:1.85;font-size:.98rem}
+/* frase de fecho da história, destacada por um fio lateral */
+.story-fecho{
+  margin:34px 0 0;padding:16px 0 16px 22px;max-width:72ch;
+  border-left:2px solid rgba(255,157,46,.55);
+  color:var(--text);font-size:1.02rem;line-height:1.7;
+}
 /* fio de abertura sobre o texto */
 .story::before{
   content:'';display:block;width:52px;height:2px;border-radius:2px;
