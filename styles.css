@@ -1290,8 +1290,69 @@ footer{
 .tl-card h3{font-size:1.12rem;margin-bottom:7px;letter-spacing:-.01em}
 .tl-card p{color:var(--text-muted);font-size:.94rem;line-height:1.65}
 
+/* especialidades */
+.esp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.esp-card{
+  position:relative;background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:var(--card-radius);padding:32px 28px;
+  transition:border-color var(--dur),transform var(--dur) var(--ease-out);
+}
+.esp-card:hover{border-color:rgba(255,157,46,.4);transform:translateY(-5px)}
+.esp-num{
+  position:absolute;top:26px;right:28px;
+  font-family:var(--font-display);font-weight:800;font-size:.78rem;letter-spacing:.14em;
+  color:var(--text-faint);
+}
+.esp-icon{
+  width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,157,46,.1);border:1px solid rgba(255,157,46,.22);
+  color:var(--orange-400);margin-bottom:20px;
+}
+.esp-card h3{font-size:1.06rem;margin-bottom:9px;letter-spacing:-.01em}
+.esp-card p{color:var(--text-muted);font-size:.93rem;line-height:1.65}
+
+/* fechamento: o futuro */
+.futuro{
+  position:relative;overflow:hidden;isolation:isolate;
+  background:linear-gradient(160deg,#171331,#100d1f 64%);
+  border:1px solid var(--card-border);border-radius:var(--radius-lg);
+  padding:clamp(32px,5vw,60px);
+}
+.futuro::before{
+  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(106,85,201,.1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(106,85,201,.1) 1px,transparent 1px);
+  background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 80% at 88% 100%,#000,transparent 72%);
+  mask-image:radial-gradient(ellipse 70% 80% at 88% 100%,#000,transparent 72%);
+}
+.futuro-glow{
+  position:absolute;left:-6%;top:-40%;width:520px;height:520px;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,157,46,.15),transparent 66%);filter:blur(30px);
+}
+.futuro-grid{display:grid;grid-template-columns:1.3fr .8fr;gap:clamp(28px,4vw,56px);align-items:center}
+.futuro-title{
+  font-family:var(--font-display);font-weight:800;letter-spacing:-.025em;line-height:1.1;
+  font-size:clamp(1.6rem,3vw,2.3rem);margin-top:6px;max-width:20ch;
+}
+.futuro-text{margin-top:16px;color:var(--text-muted);line-height:1.75;max-width:52ch}
+.futuro-assinatura{
+  margin-top:22px;padding-top:18px;border-top:1px solid var(--border);
+  font-family:var(--font-display);font-weight:600;color:var(--white);font-size:1rem;
+}
+.futuro-acao{display:flex;flex-direction:column;gap:12px}
+.futuro-acao .btn{width:100%}
+
+@media (max-width:900px){
+  .esp-grid{grid-template-columns:1fr}
+  .futuro-grid{grid-template-columns:1fr;gap:26px}
+  .futuro-title{max-width:none}
+}
+
 /* values */
 .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:var(--space-8)}
+.values-grid--4{grid-template-columns:repeat(2,1fr)}
 .value-card{
   background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--card-radius);
   padding:32px 28px;transition:border-color var(--dur),transform var(--dur) var(--ease-out);
