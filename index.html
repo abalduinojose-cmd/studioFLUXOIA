@@ -49,6 +49,7 @@
     <div class="blob blob-orange"></div>
   </div>
   <canvas id="techCanvas" aria-hidden="true"></canvas>
+  <div class="hero-fx" aria-hidden="true"></div>
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="hero-badge">
@@ -73,7 +74,12 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </span>
       </a>
-      <a class="btn btn-ghost btn-lg" href="#servicos">Ver serviços</a>
+      <a class="btn btn-ghost btn-lg btn-ver" href="#servicos">
+        <span>Ver serviços</span>
+        <span class="btn-ver-icon" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </span>
+      </a>
     </div>
     <div class="hero-visual reveal">
       <div class="visual-scene" aria-hidden="true">
@@ -85,16 +91,24 @@
       <img class="hero-phone" src="img/agente-ia.webp" alt="Agente de IA da FluxoIA no celular" width="860" height="1147" fetchpriority="high">
       <div class="phone-ground" aria-hidden="true"></div>
       <div class="hero-chip chip-1">
-        <div class="chip-icon" style="background:rgba(255,157,46,.16)">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffb35c" stroke-width="2.2"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
-        </div>
-        <div>+ Conversão<small>páginas focadas em venda</small></div>
+        <span class="chip-icon chip-icon--orange">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="15.5" rx="2.6"/><path d="M2.5 8.6h19M5.6 6.3h.01M8.2 6.3h.01"/><path d="M8.6 15.4l2.8-3 2.3 2.1 2.7-3.3"/></svg>
+        </span>
+        <span class="chip-copy">
+          <em class="chip-kicker">Seu site</em>
+          <b>Feito para vender</b>
+          <small>sob medida, rápido e no Google</small>
+        </span>
       </div>
       <div class="hero-chip chip-2">
-        <div class="chip-icon" style="background:rgba(155,30,99,.22)">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#c93f8b" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4 8.6 8.6 0 0 1-3.9-.9L3 21l2-5.4a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 12.5 3a8.4 8.4 0 0 1 8.5 8.5z"/></svg>
-        </div>
-        <div>IA no atendimento<small>respostas em segundos, 24/7</small></div>
+        <span class="chip-icon chip-icon--magenta">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4 8.6 8.6 0 0 1-3.9-.9L3 21l2-5.4a8.3 8.3 0 0 1-1-4A8.4 8.4 0 0 1 12.5 3a8.4 8.4 0 0 1 8.5 8.5z"/><path d="M8.6 11.5h.01M12 11.5h.01M15.4 11.5h.01"/></svg>
+        </span>
+        <span class="chip-copy">
+          <em class="chip-kicker">Atendimento IA<i class="chip-live" aria-hidden="true"></i></em>
+          <b>Responde na hora</b>
+          <small>no site e no WhatsApp, 24h por dia</small>
+        </span>
       </div>
     </div>
   </div>
@@ -398,7 +412,7 @@
         <div class="contact-text">
           <div class="kicker">Vamos conversar?</div>
           <h2>Vamos criar um site que <span class="hl">vende de verdade?</span></h2>
-          <p>Conte rapidamente sobre o seu negócio e receba uma proposta sob medida — sem compromisso.</p>
+          <p>Conte rapidamente sobre o seu negócio e receba uma proposta sob medida, sem compromisso.</p>
           <ul class="contact-list">
             <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Resposta rápida pelo WhatsApp</li>
             <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Proposta clara, sem letra miúda</li>

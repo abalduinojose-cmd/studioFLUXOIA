@@ -241,10 +241,34 @@ header.scrolled{
 }
 @keyframes btnIn{from{opacity:0;transform:translateY(14px) scale(.96)}}
 .btn-ghost{
-  background:rgba(255,255,255,.03);color:var(--white);
-  border:1px solid var(--border-strong);backdrop-filter:blur(8px);
+  color:var(--white);
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+  border:1px solid transparent;background-clip:padding-box;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
 }
-.btn-ghost:hover{border-color:rgba(255,157,46,.6);color:var(--orange-400);background:rgba(255,157,46,.06);transform:translateY(-2px)}
+/* hairline em gradiente no lugar da borda chapada */
+.btn-ghost::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.2),rgba(255,157,46,.26) 55%,rgba(255,255,255,.07));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  transition:background var(--dur) var(--ease-out);
+}
+.btn-ghost:hover{
+  color:var(--orange-400);transform:translateY(-2px);
+  background:linear-gradient(180deg,rgba(255,157,46,.11),rgba(255,157,46,.025));
+}
+.btn-ghost:hover::before{background:linear-gradient(120deg,rgba(255,157,46,.75),rgba(201,63,139,.45) 60%,rgba(255,157,46,.28))}
+/* secundário da hero: rótulo + seta em disco que desce no hover */
+.btn-ver{gap:14px;padding-right:12px}
+.btn-ver-icon{
+  width:27px;height:27px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--border-strong);color:var(--orange-400);
+  transition:transform var(--dur) var(--ease-out),border-color var(--dur-fast),background var(--dur-fast);
+}
+.btn-ver:hover .btn-ver-icon{transform:translateY(3px);border-color:rgba(255,157,46,.55);background:rgba(255,157,46,.12)}
 .btn-sm{padding:11px 22px;font-size:.87rem}
 /* ripple */
 .btn .ripple{
@@ -260,28 +284,45 @@ header.scrolled{
 #hero{
   position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:150px 0 90px;
   background:
-    /* luz principal atrás do celular */
-    radial-gradient(1100px 620px at 74% -14%, rgba(84,60,178,.46), transparent 64%),
+    /* núcleo de luz atrás do celular */
+    radial-gradient(1000px 600px at 76% -12%, rgba(96,70,205,.5), transparent 62%),
+    /* segundo foco magenta, mais baixo, cria profundidade no canto direito */
+    radial-gradient(720px 480px at 98% 40%, rgba(155,30,99,.2), transparent 66%),
     /* brasa laranja discreta, do lado do texto */
-    radial-gradient(620px 420px at 2% 26%, rgba(255,157,46,.11), transparent 66%),
+    radial-gradient(640px 440px at 0% 24%, rgba(255,157,46,.13), transparent 64%),
     /* base fria, ancorando o rodapé da seção */
-    radial-gradient(900px 520px at -10% 96%, rgba(26,17,73,.7), transparent 62%),
-    linear-gradient(180deg, var(--plum-950) 0%, #0d0b18 58%, var(--plum-950) 100%);
+    radial-gradient(1000px 560px at -8% 100%, rgba(26,17,73,.72), transparent 62%),
+    linear-gradient(180deg, var(--plum-950) 0%, #0c0a18 54%, var(--plum-950) 100%);
 }
-/* grade tech + varredura de luz diagonal */
+/* grade técnica em duas escalas: malha fina + linha mestra a cada 5 quadros */
 #hero::before{
   content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
   background-image:
-    linear-gradient(rgba(106,85,201,.08) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(106,85,201,.08) 1px,transparent 1px);
-  background-size:46px 46px;
-  -webkit-mask-image:radial-gradient(ellipse 85% 75% at 62% 18%,#000,transparent 78%);
-  mask-image:radial-gradient(ellipse 85% 75% at 62% 18%,#000,transparent 78%);
+    linear-gradient(rgba(106,85,201,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(106,85,201,.055) 1px,transparent 1px),
+    linear-gradient(rgba(106,85,201,.115) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(106,85,201,.115) 1px,transparent 1px);
+  background-size:24px 24px,24px 24px,120px 120px,120px 120px;
+  -webkit-mask-image:radial-gradient(ellipse 88% 78% at 62% 16%,#000,transparent 76%);
+  mask-image:radial-gradient(ellipse 88% 78% at 62% 16%,#000,transparent 76%);
 }
+/* feixe de luz que atravessa a seção devagar, indo e voltando */
 #hero::after{
-  content:'';position:absolute;inset:-20% -10%;z-index:0;pointer-events:none;
-  background:linear-gradient(104deg,transparent 34%,rgba(255,255,255,.03) 46%,rgba(255,157,46,.05) 50%,transparent 62%);
-  transform:translateX(-12%);
+  content:'';position:absolute;inset:-25% -34%;z-index:0;pointer-events:none;
+  background:linear-gradient(104deg,
+    transparent 40%,
+    rgba(255,255,255,.035) 47%,
+    rgba(255,157,46,.06) 50%,
+    rgba(155,30,99,.045) 53%,
+    transparent 60%);
+  animation:heroSweep 20s ease-in-out infinite alternate;
+}
+@keyframes heroSweep{from{transform:translateX(-22%)}to{transform:translateX(22%)}}
+/* grão fino: tira o aspecto plástico dos gradientes */
+.hero-fx{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  opacity:.055;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
 }
 #techCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 
@@ -451,23 +492,61 @@ header.scrolled{
     radial-gradient(ellipse 46% 34% at 50% 78%,rgba(61,44,135,.5),transparent 70%),
     linear-gradient(180deg,transparent,rgba(10,10,14,.92) 74%);
 }
+/* chips flutuantes: cartões técnicos com hairline em gradiente */
 .hero-chip{
-  position:absolute;z-index:4;
-  background:rgba(16,13,33,.72);border:1px solid var(--border-strong);border-radius:16px;
-  backdrop-filter:blur(14px);box-shadow:0 16px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.07);
-  padding:13px 17px;display:flex;align-items:center;gap:11px;
-  font-size:.83rem;font-weight:600;font-family:var(--font-display);color:var(--white);
+  position:absolute;z-index:4;max-width:min(268px,88%);
+  display:flex;align-items:flex-start;gap:12px;
+  padding:13px 17px 14px 13px;border-radius:15px;
+  background:linear-gradient(152deg,rgba(24,19,52,.94),rgba(12,10,24,.9));
+  border:1px solid transparent;background-clip:padding-box;
+  -webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:0 22px 54px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.06);
+  font-family:var(--font-display);color:var(--white);
   animation:chipFloat 7s ease-in-out infinite;
 }
+.hero-chip::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(140deg,rgba(255,157,46,.5),rgba(155,30,99,.28) 46%,transparent 76%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+}
+.chip-2::before{background:linear-gradient(140deg,rgba(201,63,139,.5),rgba(106,85,201,.28) 46%,transparent 76%)}
 .chip-2{animation-delay:-3.5s}
 @keyframes chipFloat{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-7px)}
 }
-.hero-chip small{display:block;font-family:var(--font-body);font-weight:400;color:var(--text-faint);font-size:.72rem}
-.chip-icon{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:none}
-.chip-1{top:7%;right:0}
-.chip-2{bottom:9%;left:0}
+.chip-icon{
+  position:relative;width:38px;height:38px;border-radius:12px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.chip-icon::after{content:'';position:absolute;inset:0;border-radius:inherit;border:1px solid rgba(255,255,255,.09)}
+.chip-icon--orange{background:rgba(255,157,46,.14);color:var(--orange-400)}
+.chip-icon--magenta{background:rgba(155,30,99,.24);color:var(--magenta-400)}
+.chip-copy{min-width:0}
+.chip-kicker{
+  display:flex;align-items:center;gap:6px;font-style:normal;
+  font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--orange-400);
+}
+.chip-2 .chip-kicker{color:#e37fb6}
+.hero-chip b{display:block;margin-top:4px;font-size:.9rem;font-weight:700;letter-spacing:-.01em;line-height:1.25}
+.hero-chip small{
+  display:block;margin-top:3px;font-family:var(--font-body);font-weight:400;
+  color:var(--text-faint);font-size:.71rem;line-height:1.45;
+}
+/* ponto "no ar" do chip de atendimento */
+.chip-live{
+  width:6px;height:6px;border-radius:50%;background:#3ad07f;flex:none;
+  animation:livePulse 2.2s ease-in-out infinite;
+}
+@keyframes livePulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(58,208,127,.5)}
+  50%{box-shadow:0 0 0 5px rgba(58,208,127,0)}
+}
+.chip-1{top:5%;right:0}
+.chip-2{bottom:8%;left:0}
 
 /* ==========================================================================
    TICKER (faixa de serviços em pills de vidro)
@@ -1466,8 +1545,12 @@ footer{
   .step:hover .step-dot{transform:translateX(-50%) scale(1.25)}
   .step-body{padding-top:0}
   .step p{max-width:none}
-  .chip-1{top:4%;right:-4px}
-  .chip-2{bottom:6%;left:-4px}
+  .hero-chip{max-width:min(214px,92%);gap:10px;padding:11px 14px 12px 11px;border-radius:13px}
+  .chip-icon{width:33px;height:33px;border-radius:10px}
+  .hero-chip b{font-size:.83rem}
+  .hero-chip small{font-size:.67rem}
+  .chip-1{top:3%;right:-4px}
+  .chip-2{bottom:5%;left:-4px}
   .blob{filter:blur(70px)}
   .ticker{padding:14px 0}
   .ticker-item{font-size:.8rem;padding:9px 16px}
@@ -1496,6 +1579,6 @@ footer{
     animation-iteration-count:1!important;
     transition-duration:.001s!important;
   }
-  .blob,.ticker-track,.scene-ring,.hero-phone,.hero-chip,.phone-halo,.visual-scene::after,.btn-glow::before,.scroll-wheel,.qcard,.quem-glow{animation:none!important}
+  .blob,.ticker-track,.scene-ring,.hero-phone,.hero-chip,.phone-halo,.visual-scene::after,.btn-glow::before,.scroll-wheel,.qcard,.quem-glow,#hero::after,.chip-live{animation:none!important}
   #cursorGlow,#scrollProgress{display:none}
 }
