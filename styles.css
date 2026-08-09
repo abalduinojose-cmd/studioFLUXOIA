@@ -260,18 +260,28 @@ header.scrolled{
 #hero{
   position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:150px 0 90px;
   background:
-    radial-gradient(1000px 560px at 72% -12%, rgba(61,44,135,.42), transparent 62%),
-    radial-gradient(760px 480px at -8% 88%, rgba(26,17,73,.65), transparent 60%);
+    /* luz principal atrás do celular */
+    radial-gradient(1100px 620px at 74% -14%, rgba(84,60,178,.46), transparent 64%),
+    /* brasa laranja discreta, do lado do texto */
+    radial-gradient(620px 420px at 2% 26%, rgba(255,157,46,.11), transparent 66%),
+    /* base fria, ancorando o rodapé da seção */
+    radial-gradient(900px 520px at -10% 96%, rgba(26,17,73,.7), transparent 62%),
+    linear-gradient(180deg, var(--plum-950) 0%, #0d0b18 58%, var(--plum-950) 100%);
 }
-/* grade tech futurista */
+/* grade tech + varredura de luz diagonal */
 #hero::before{
   content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
   background-image:
-    linear-gradient(rgba(106,85,201,.09) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(106,85,201,.09) 1px,transparent 1px);
+    linear-gradient(rgba(106,85,201,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(106,85,201,.08) 1px,transparent 1px);
   background-size:46px 46px;
   -webkit-mask-image:radial-gradient(ellipse 85% 75% at 62% 18%,#000,transparent 78%);
   mask-image:radial-gradient(ellipse 85% 75% at 62% 18%,#000,transparent 78%);
+}
+#hero::after{
+  content:'';position:absolute;inset:-20% -10%;z-index:0;pointer-events:none;
+  background:linear-gradient(104deg,transparent 34%,rgba(255,255,255,.03) 46%,rgba(255,157,46,.05) 50%,transparent 62%);
+  transform:translateX(-12%);
 }
 #techCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 
@@ -316,23 +326,51 @@ header.scrolled{
 .hero-sub{margin-top:24px;font-size:1.06rem;color:var(--text-muted);line-height:1.75;max-width:52ch}
 
 /* barra de estatísticas em vidro */
+/* stats: trio compacto, sem caixa pesada */
 .hero-stats{
-  grid-area:auto;display:inline-flex;gap:clamp(20px,3vw,40px);margin-top:36px;flex-wrap:wrap;align-items:center;
-  background:linear-gradient(160deg,rgba(61,44,135,.22),rgba(16,13,33,.4));
-  border:1px solid var(--border-strong);border-radius:20px;
-  padding:20px clamp(22px,3vw,34px);backdrop-filter:blur(12px);
-  box-shadow:0 18px 44px rgba(10,10,14,.4),inset 0 1px 0 rgba(255,255,255,.05);
+  grid-area:auto;display:grid;grid-template-columns:repeat(3,auto);
+  gap:clamp(18px,3vw,38px);margin-top:34px;justify-content:start;align-items:start;
 }
-.hstat{position:relative;padding-right:clamp(20px,3vw,40px)}
-.hstat:not(:last-child)::after{
-  content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);
-  width:1px;height:34px;background:linear-gradient(180deg,transparent,var(--border-strong),transparent);
+.hstat{
+  position:relative;padding-left:14px;
 }
-.hstat:last-child{padding-right:0}
-.hstat b{display:block;font-family:var(--font-display);font-weight:700;font-size:2rem;line-height:1;color:var(--orange-500)}
-.hstat span{display:block;margin-top:6px;font-size:.78rem;color:var(--text-muted)}
+/* fio de acento no início de cada número */
+.hstat::before{
+  content:'';position:absolute;left:0;top:4px;bottom:4px;width:2px;border-radius:2px;
+  background:linear-gradient(180deg,var(--orange-500),rgba(255,157,46,.15));
+}
+.hstat:nth-child(2)::before{background:linear-gradient(180deg,var(--magenta-400),rgba(201,63,139,.15))}
+.hstat:nth-child(3)::before{background:linear-gradient(180deg,var(--blue-500),rgba(106,85,201,.15))}
+.hstat b{
+  display:block;font-family:var(--font-display);font-weight:800;
+  font-size:clamp(1.7rem,2.6vw,2.1rem);line-height:1;letter-spacing:-.02em;color:var(--white);
+}
+.hstat span{display:block;margin-top:6px;font-size:.76rem;color:var(--text-muted);line-height:1.35;max-width:14ch}
 
 .btn-glow{position:relative;display:inline-flex;border-radius:99px}
+
+/* ---------- CTA principal: rótulo em duas linhas + pastilha do ícone ---------- */
+.btn-cta{
+  padding:10px 10px 10px 26px;gap:20px;
+  justify-content:space-between;text-align:left;
+  box-shadow:0 6px 20px rgba(255,157,46,.24),0 16px 44px rgba(255,157,46,.16),inset 0 1px 0 rgba(255,255,255,.42);
+}
+.btn-cta-text{display:flex;flex-direction:column;gap:1px;line-height:1.15}
+.btn-cta-text b{font-family:var(--font-display);font-weight:700;font-size:1.02rem;letter-spacing:-.01em}
+.btn-cta-text small{font-size:.74rem;font-weight:500;opacity:.72}
+.btn-cta-icon{
+  flex:none;width:44px;height:44px;border-radius:99px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--blue-900);color:var(--orange-400);
+  transition:transform var(--dur) var(--ease-out);
+}
+.btn-cta:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 26px rgba(255,157,46,.34),0 22px 60px rgba(255,157,46,.22),inset 0 1px 0 rgba(255,255,255,.42);
+}
+.btn-cta:hover .btn-cta-icon{transform:translateX(4px)}
+.btn-cta:active .btn-cta-icon{transform:translateX(1px) scale(.94)}
+.btn-lg{padding:18px 32px;font-size:1rem}
 
 /* indicador de scroll */
 .hero-scroll{
@@ -352,10 +390,14 @@ header.scrolled{
 @keyframes scrollFade{from{opacity:0;transform:translate(-50%,10px)}}
 @media (max-width:980px){.hero-scroll{display:none}}
 @media (max-width:560px){
-  .hero-stats{flex-direction:column;align-items:stretch;gap:0;width:100%;max-width:340px;padding:6px 26px}
-  .hstat{padding:16px 0;text-align:center}
-  .hstat:not(:last-child)::after{top:auto;bottom:0;right:auto;left:0;transform:none;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border-strong),transparent)}
-  .hstat b{font-size:1.8rem}
+  /* trio continua lado a lado no celular, só mais compacto */
+  .hero-stats{gap:14px;justify-content:center;width:100%}
+  .hstat{padding-left:10px}
+  .hstat b{font-size:1.35rem}
+  .hstat span{font-size:.68rem;max-width:11ch}
+  /* CTA ocupa a largura toda e fica confortável para o dedo */
+  .btn-cta{width:100%;max-width:340px}
+  .hero-ctas .btn-ghost{width:100%;max-width:340px;justify-content:center}
 }
 
 .hero-phone{
@@ -1320,8 +1362,7 @@ footer{
   .hero-grid{row-gap:22px}
   .hero-badge{margin-bottom:18px}
   .hero-sub{margin-top:16px;font-size:1rem}
-  .hero-stats{margin-top:24px;padding:4px 22px}
-  .hstat{padding:14px 0}
+  .hero-stats{margin-top:24px}
   .hero-ctas{margin-top:22px;gap:12px}
   .services-grid,.quotes-grid,.pricing-grid,.stats-grid,.values-grid{gap:14px}
   .service-card{padding:26px 22px}
