@@ -488,12 +488,35 @@
           <li><a href="#servicos">Automação Comercial</a></li>
         </ul>
       </nav>
+      <div class="footer-col footer-contact">
+        <h5>Contato</h5>
+        <ul>
+          <li>
+            <a class="fc-canal" href="https://wa.me/5524981617338" target="_blank" rel="noopener">
+              <span class="fc-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5-.3.6-.6.7-.4 1 .6 1 1.3 1.7 2.2 2.3.3.2.5.2.7 0l.9-1.1c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4 0 .1 0 .7-.2 1.3z"/></svg></span>
+              <span><em>WhatsApp</em>(24) 98161-7338</span>
+            </a>
+          </li>
+          <li>
+            <a class="fc-canal" href="https://www.instagram.com/fluxo_ia_studio/" target="_blank" rel="noopener">
+              <span class="fc-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
+              <span><em>Instagram</em>@fluxo_ia_studio</span>
+            </a>
+          </li>
+        </ul>
+        <a class="footer-cta" href="https://wa.me/5524981617338?text=Ol%C3%A1!%20Quero%20falar%20com%20a%20FluxoIA%20Studio." target="_blank" rel="noopener">
+          Falar agora
+          <i aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
+        </a>
+      </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 FluxoIA Studio. Todos os direitos reservados.</span>
       <span class="tagline">Sites · Automação · IA</span>
+      <a class="footer-top" href="#top">Voltar ao topo <i aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></i></a>
     </div>
   </div>
+  <div class="footer-wordmark" aria-hidden="true">FLUXOIA</div>
 </footer>
 
 <!-- ============ FLUTUANTE WHATSAPP ============ -->
@@ -502,49 +525,70 @@
 </a>
 
 <script>
-/* ====== rede de partículas (hero) ====== */
+/* ====== trilhos de dados (hero): pulsos correndo sobre a grade ====== */
 (function(){
   const canvas = document.getElementById('techCanvas');
   if(!canvas || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const ctx = canvas.getContext('2d');
   const dpr = Math.min(devicePixelRatio || 1, 2);
-  let W, H, pts = [];
+  const PASSO = 120;                                   // mesma linha mestra da grade do CSS
+  const CORES = ['255,157,46','201,63,139','106,85,201'];
+  let W = 0, H = 0, pulsos = [];
+
+  /* cada pulso corre por uma linha da grade; ao sair da tela, volta do outro lado */
+  function novo(recomecando){
+    const vertical = Math.random() < .55;
+    const passo = PASSO * dpr;
+    const trilhos = Math.max(1, Math.round((vertical ? W : H) / passo));
+    const eixo = (vertical ? H : W);
+    const rastro = (150 + Math.random()*230) * dpr;
+    return {
+      vertical,
+      pos: Math.round(Math.random()*trilhos) * passo,
+      rastro,
+      vel: (.4 + Math.random()*.85) * dpr,
+      dir: Math.random() < .5 ? 1 : -1,
+      cor: CORES[Math.floor(Math.random()*CORES.length)],
+      alfa: .3 + Math.random()*.34,
+      t: recomecando ? 0 : Math.random() * (eixo + rastro)
+    };
+  }
 
   function resize(){
-    W = canvas.width = canvas.offsetWidth * dpr;
+    W = canvas.width  = canvas.offsetWidth  * dpr;
     H = canvas.height = canvas.offsetHeight * dpr;
-    const n = Math.max(26, Math.min(60, Math.round(canvas.offsetWidth / 24)));
-    pts = Array.from({length:n}, () => ({
-      x: Math.random()*W, y: Math.random()*H,
-      vx: (Math.random()-.5)*.3*dpr, vy: (Math.random()-.5)*.3*dpr,
-      r: (1.1+Math.random()*1.8)*dpr,
-      c: ['201,63,139','255,157,46','106,85,201'][Math.floor(Math.random()*3)]
-    }));
+    const n = Math.max(6, Math.min(15, Math.round(canvas.offsetWidth / 105)));
+    pulsos = Array.from({length:n}, () => novo(false));
   }
-  const LINK = 150;
+
   function draw(){
     ctx.clearRect(0,0,W,H);
-    const link = LINK*dpr;
-    for(let i=0;i<pts.length;i++){
-      const p = pts[i];
-      p.x += p.vx; p.y += p.vy;
-      if(p.x<0||p.x>W) p.vx*=-1;
-      if(p.y<0||p.y>H) p.vy*=-1;
-      for(let j=i+1;j<pts.length;j++){
-        const q = pts[j];
-        const dx = p.x-q.x, dy = p.y-q.y;
-        const d = Math.hypot(dx,dy);
-        if(d < link){
-          ctx.strokeStyle = 'rgba('+p.c+','+(.22*(1-d/link)).toFixed(3)+')';
-          ctx.lineWidth = 1*dpr;
-          ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
-        }
-      }
-      ctx.fillStyle = 'rgba('+p.c+',.6)';
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,7); ctx.fill();
+    for(let i=0;i<pulsos.length;i++){
+      const p = pulsos[i];
+      const eixo = p.vertical ? H : W;
+      p.t += p.vel;
+      if(p.t > eixo + p.rastro){ pulsos[i] = novo(true); continue; }
+
+      // cabeça na frente, rastro atrás, invertidos quando dir é -1
+      const cabeca = p.dir > 0 ? p.t : eixo - p.t;
+      const cauda  = p.dir > 0 ? p.t - p.rastro : eixo - p.t + p.rastro;
+      const x1 = p.vertical ? p.pos : cauda,  y1 = p.vertical ? cauda  : p.pos;
+      const x2 = p.vertical ? p.pos : cabeca, y2 = p.vertical ? cabeca : p.pos;
+
+      const g = ctx.createLinearGradient(x1,y1,x2,y2);
+      g.addColorStop(0,   'rgba('+p.cor+',0)');
+      g.addColorStop(.74, 'rgba('+p.cor+','+(p.alfa*.4).toFixed(3)+')');
+      g.addColorStop(1,   'rgba('+p.cor+','+p.alfa.toFixed(3)+')');
+      ctx.strokeStyle = g;
+      ctx.lineWidth = 1.4*dpr;
+      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+
+      ctx.fillStyle = 'rgba('+p.cor+','+Math.min(1,p.alfa*1.5).toFixed(3)+')';
+      ctx.beginPath(); ctx.arc(x2,y2,1.6*dpr,0,7); ctx.fill();
     }
     requestAnimationFrame(draw);
   }
+
   addEventListener('resize', resize);
   resize();
   draw();
