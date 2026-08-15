@@ -1179,161 +1179,83 @@ footer{
   background:radial-gradient(760px 420px at 82% -10%,rgba(61,44,135,.28),transparent 62%);
 }
 
-/* ---------- equipe: lista editorial, não grade ---------- */
-.rst{display:flex;flex-direction:column}
-
-/* uma pessoa = uma linha sobre 12 colunas */
-.rst-row{
-  position:relative;display:grid;
-  grid-template-columns:repeat(12,minmax(0,1fr));
-  column-gap:clamp(14px,2.2vw,30px);
-  align-items:start;
-  padding:clamp(34px,5vw,66px) 0;
-  border-top:1px solid var(--border);
-  transition:opacity .7s var(--ease-out),transform .9s var(--ease-out);
+/* ---------- equipe ---------- */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.team-card{
+  margin:0;position:relative;overflow:hidden;
+  border-radius:22px;border:1px solid var(--card-border);background:var(--card-bg);
+  transition:transform var(--dur) var(--ease-out),border-color var(--dur),box-shadow var(--dur);
 }
-.rst-row:first-child{border-top:none;padding-top:clamp(6px,1.6vw,18px)}
-.rst-row:last-child{border-bottom:1px solid var(--border)}
-
-/* ---------- trilho com a numeração ---------- */
-.rst-rail{
-  grid-column:1/2;align-self:stretch;
-  display:flex;flex-direction:column;align-items:flex-start;gap:16px;
+.team-card:hover{
+  transform:translateY(-6px);border-color:rgba(255,157,46,.5);
+  box-shadow:0 22px 52px rgba(0,0,0,.5);
 }
-.rst-num{
-  font-family:var(--font-display);font-weight:600;
-  font-size:clamp(1rem,1.5vw,1.3rem);letter-spacing:.1em;
-  font-variant-numeric:tabular-nums;
-  color:var(--white-50);
-  transition:color var(--dur) var(--ease-out);
+/* fundo da marca: aparece enquanto o vídeo carrega, no lugar de um retângulo preto */
+.team-media{
+  position:relative;aspect-ratio:1/1;overflow:hidden;
+  background:
+    radial-gradient(420px 300px at 50% 36%,rgba(61,44,135,.5),transparent 70%),
+    linear-gradient(170deg,var(--plum-850),var(--plum-950));
 }
-/* único laranja permanente da seção, e ele começa recolhido */
-.rst-line{
-  width:1px;flex:1;min-height:56px;
-  background:linear-gradient(180deg,var(--orange-500),transparent);
-  transform:scaleY(.12);transform-origin:top;
-  transition:transform .75s var(--ease-out);
+.team-video{background:transparent}
+/* enquadra mais alto no vídeo, para a cabeça caber inteira no quadrado */
+.team-video--alto{object-position:center 18%}
+.team-video{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.9) contrast(1.03);
+  transition:transform .7s var(--ease-out);
 }
-.rst-row:hover .rst-num{color:var(--white)}
-.rst-row:hover .rst-line{transform:scaleY(1)}
-
-/* ---------- texto ---------- */
-.rst-name{
-  font-family:var(--font-display);font-weight:800;
-  font-size:clamp(2rem,4.6vw,3.4rem);
-  line-height:1.02;letter-spacing:-.035em;color:var(--white);
-  text-wrap:balance;
+.team-card:hover .team-video{transform:scale(1.04)}
+/* gradiente para a legenda respirar sobre a imagem */
+.team-media::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 45%,rgba(10,10,14,.72) 100%);
 }
-/* sobrenome em peso e cor menores: escala dentro do próprio nome */
-.rst-sur{font-weight:500;color:var(--white-50);letter-spacing:-.02em}
-/* cargo saiu do laranja e virou rótulo técnico */
-.rst-role{
-  margin-top:15px;
-  font-family:var(--font-display);font-size:.7rem;font-weight:600;
-  letter-spacing:.18em;text-transform:uppercase;
-  color:var(--white-70);line-height:1.8;
+/* card sem vídeo: monograma */
+.team-media--mono{
+  display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(420px 300px at 50% 34%,rgba(61,44,135,.42),transparent 68%),
+    var(--plum-900);
 }
-.rst-bio{
-  margin-top:18px;max-width:42ch;
-  font-size:clamp(.97rem,1.2vw,1.08rem);line-height:1.72;color:var(--text-muted);
+.team-mono{
+  font-family:var(--font-display);font-weight:800;font-size:clamp(4rem,9vw,6rem);
+  line-height:1;color:var(--orange-500);opacity:.9;
 }
-/* raio de 2px no lugar de pílula: lê como etiqueta técnica, não como chip */
-.rst-tags{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-top:26px}
-.rst-tags li{
-  font-family:var(--font-display);font-size:.64rem;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--white-50);
-  border:1px solid var(--border);border-radius:2px;padding:6px 10px;
+.team-mono-icon{
+  position:absolute;bottom:22%;left:50%;transform:translateX(-50%);
+  color:var(--orange-400);opacity:.7;
+}
+.team-info{
+  position:relative;padding:20px 22px 22px;
+  display:flex;flex-direction:column;gap:0;
+}
+/* fio de luz no topo da legenda */
+.team-info::before{
+  content:'';position:absolute;top:0;left:22px;right:22px;height:1px;
+  background:linear-gradient(90deg,var(--orange-500),transparent 70%);
+  transform:scaleX(.28);transform-origin:left;
+  transition:transform .6s var(--ease-out);
+}
+.team-card:hover .team-info::before{transform:scaleX(1)}
+.team-info b{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--white);letter-spacing:-.01em}
+.team-role{
+  margin-top:4px;font-size:.78rem;color:var(--orange-400);font-weight:600;
+  letter-spacing:.02em;line-height:1.4;
+}
+.team-bio{
+  margin-top:12px;font-size:.9rem;line-height:1.6;color:var(--text-muted);
+}
+.team-tags{
+  list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-top:16px;
+}
+.team-tags li{
+  font-size:.7rem;font-weight:500;color:var(--text-muted);
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:99px;padding:5px 11px;
   transition:border-color var(--dur),color var(--dur);
 }
-.rst-row:hover .rst-tags li{border-color:var(--border-strong);color:var(--white-70)}
-
-/* ---------- mídia: preto e branco em repouso, cor no hover ---------- */
-.rst-media{
-  margin:0;position:relative;overflow:hidden;
-  border:1px solid var(--border);border-radius:4px;
-  background:var(--plum-950);
-  transition:border-color var(--dur);
-}
-.rst-media .team-video{
-  width:100%;height:100%;object-fit:cover;display:block;
-  filter:grayscale(1) contrast(1.06) brightness(.94);
-  transition:filter .8s var(--ease-out);
-}
-.rst-row:hover .rst-media{border-color:var(--border-strong)}
-.rst-row:hover .team-video{filter:grayscale(0) contrast(1.02) brightness(1)}
-/* enquadra mais alto: a cabeça cabe inteira no recorte vertical */
-.team-video--alto{object-position:center 22%}
-
-/* ---------- escopo: ocupa a coluna de quem não tem vídeo ---------- */
-.rst-plate{
-  align-self:start;margin-top:clamp(6px,1.4vw,16px);
-  border:1px solid var(--border);border-radius:4px;
-  padding:clamp(18px,2.2vw,26px);
-  transition:border-color var(--dur);
-}
-.rst-row:hover .rst-plate{border-color:var(--border-strong)}
-.rst-plate-label{
-  display:block;margin-bottom:6px;
-  font-family:var(--font-display);font-size:.62rem;font-weight:600;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--white-50);
-}
-.rst-plate p{
-  padding:12px 0;border-bottom:1px solid var(--border);
-  font-size:.9rem;line-height:1.5;color:var(--white-70);
-}
-.rst-plate p:last-child{border-bottom:none;padding-bottom:0}
-
-/* ---------- assimetria: cada linha ocupa a grade de um jeito ---------- */
-/* 01 · texto em 5 colunas, recorte vertical grande à direita */
-.rst-row--a .rst-body{grid-column:2/7}
-.rst-row--a .rst-media{grid-column:8/13;aspect-ratio:4/5}
-
-/* 02 · sem vídeo: o texto se alarga e o escopo fica estreito */
-.rst-row--b .rst-body{grid-column:2/8}
-.rst-row--b .rst-plate{grid-column:9/13}
-
-/* 03 · espelhada: recorte menor à esquerda, deslocado para baixo */
-.rst-row--c .rst-media{grid-column:2/6;aspect-ratio:3/4;margin-top:clamp(0px,3.4vw,52px)}
-.rst-row--c .rst-body{grid-column:7/13}
-
-/* ---------- tablet: mantém o espelhamento, devolve largura ao texto ---------- */
-@media (max-width:1024px){
-  .rst-row{grid-template-columns:52px minmax(0,1fr) minmax(0,.8fr)}
-  .rst-row--c{grid-template-columns:52px minmax(0,.8fr) minmax(0,1fr)}
-  .rst-row--a .rst-body,
-  .rst-row--b .rst-body{grid-column:2}
-  .rst-row--a .rst-media{grid-column:3;aspect-ratio:3/4}
-  .rst-row--b .rst-plate{grid-column:3}
-  .rst-row--c .rst-media{grid-column:2;margin-top:0}
-  .rst-row--c .rst-body{grid-column:3}
-}
-
-/* ---------- celular: empilha e o trilho deita ---------- */
-@media (max-width:720px){
-  .rst-row,.rst-row--c{
-    grid-template-columns:minmax(0,1fr);row-gap:22px;
-    padding:clamp(30px,7vw,44px) 0;
-  }
-  .rst-row--a .rst-body,.rst-row--b .rst-body,.rst-row--c .rst-body,
-  .rst-row--a .rst-media,.rst-row--c .rst-media,
-  .rst-row--b .rst-plate{grid-column:1}
-  .rst-row--a .rst-media,.rst-row--c .rst-media{aspect-ratio:4/3;margin-top:0}
-  .rst-row--b .rst-plate{margin-top:0}
-  .rst-rail{flex-direction:row;align-items:center;gap:14px;align-self:auto}
-  .rst-line{
-    width:auto;height:1px;flex:1;min-height:0;
-    background:linear-gradient(90deg,var(--orange-500),transparent);
-    transform:scaleX(.3);transform-origin:left;
-  }
-  .rst-name{font-size:clamp(1.95rem,9.5vw,2.7rem)}
-  .rst-bio{max-width:none}
-}
-
-/* sem cursor não há hover, então o vídeo não pode ficar preso em preto e branco */
-@media (hover:none){
-  .rst-media .team-video{filter:grayscale(.35) contrast(1.04)}
-  .rst-line{transform:scaleY(1)}
-}
+.team-card:hover .team-tags li{border-color:rgba(255,157,46,.28);color:var(--white-70)}
 
 /* CTA da página de equipe */
 .team-cta{
@@ -1399,8 +1321,12 @@ footer{
 .team-cta-panel .btn{width:100%}
 
 @media (max-width:860px){
+  .team-grid{grid-template-columns:1fr 1fr;gap:14px}
   .team-cta-grid{grid-template-columns:1fr;gap:28px}
   .team-cta-title{max-width:none}
+}
+@media (max-width:560px){
+  .team-grid{grid-template-columns:1fr;max-width:340px;margin:0 auto}
 }
 .about-hero{display:grid;grid-template-columns:1.5fr .85fr;gap:56px;align-items:end}
 .about-hero-title{
