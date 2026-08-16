@@ -782,23 +782,24 @@ header.scrolled{
   display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
   gap:clamp(26px,3.6vw,56px);align-items:center;
 }
-/* a tela: moldura fina, sem sombra colorida */
+/* a tela: o mockup já vem com a própria vinheta escura, então sem moldura */
 .work-shot{
   position:relative;display:block;border-radius:var(--radius);overflow:hidden;
-  border:1px solid var(--card-border);background:var(--card-bg);
-  transition:border-color var(--dur),transform var(--dur) var(--ease-out);
+  transition:transform var(--dur) var(--ease-out),filter var(--dur);
 }
 .work-shot img{width:100%;height:auto;display:block}
+.work-shot:hover img{filter:brightness(1.06)}
 /* enquanto a imagem do projeto não existe, a moldura vira uma placa com o endereço */
 .work-shot--vazio{
   aspect-ratio:3/2;display:grid;place-items:center;
+  border:1px solid var(--card-border);
   background:linear-gradient(160deg,var(--plum-850),var(--plum-900) 70%);
 }
 .work-vazio{
   font-family:var(--font-display);font-weight:600;font-size:.92rem;
   letter-spacing:.05em;color:var(--white-50);
 }
-.work-shot:hover{border-color:var(--border-strong);transform:translateY(-4px)}
+.work-shot:hover{transform:translateY(-4px)}
 /* selo "no ar": o unico ponto de cor do bloco */
 .work-live{
   position:absolute;top:14px;left:14px;z-index:2;
