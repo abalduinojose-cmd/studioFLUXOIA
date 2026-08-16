@@ -845,6 +845,16 @@ header.scrolled{
   letter-spacing:.16em;text-transform:uppercase;color:var(--white-70);
   border:1px solid var(--border-strong);border-radius:99px;padding:5px 11px;
 }
+/* projeto pronto mas ainda sem domínio: ponto parado, sem o pulso do "no ar" */
+.work-live--breve{color:var(--white-50)}
+.work-live--breve i{background:var(--white-50);animation:none}
+/* endereço ainda não publicado: aparece como texto, nunca como link quebrado */
+.work-dominio{
+  font-family:var(--font-display);font-weight:600;font-size:.9rem;
+  color:var(--white-50);letter-spacing:.01em;
+}
+.work-shot--sem-link{cursor:default}
+.work-shot--sem-link:hover{transform:none}
 .work-live i{
   width:6px;height:6px;border-radius:50%;background:var(--orange-500);flex:none;
   animation:livePulse 2.2s ease-in-out infinite;
