@@ -795,13 +795,13 @@ header.scrolled{
 .work-rail{
   margin-top:clamp(30px,4vw,50px);
   overflow-x:auto;overscroll-behavior-x:contain;
-  scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  scroll-snap-type:x mandatory;
   scroll-padding-left:max(24px,calc((100vw - 1200px)/2));
   cursor:grab;-webkit-user-select:none;user-select:none;
   scrollbar-width:none;
 }
 .work-rail::-webkit-scrollbar{display:none}
-.work-rail.arrastando{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none}
+.work-rail.arrastando{cursor:grabbing;scroll-snap-type:none}
 .work-rail:focus-visible{outline:3px solid var(--ring);outline-offset:6px}
 .work-track{
   display:flex;gap:clamp(18px,2.4vw,32px);width:max-content;
@@ -813,13 +813,18 @@ header.scrolled{
      não re-encaixa sozinho quando as imagens terminam de carregar */
   scroll-snap-align:start;
 }
+/* a imagem é um PNG recortado: o notebook flutua, sem retângulo em volta */
 .work-shot{
-  position:relative;display:block;border-radius:var(--radius);overflow:hidden;
-  transition:transform var(--dur) var(--ease-out),filter var(--dur);
+  position:relative;display:block;
+  transition:transform var(--dur) var(--ease-out);
 }
-.work-shot img{width:100%;height:auto;display:block;pointer-events:none}
-.work-shot:hover{transform:translateY(-4px)}
-.work-shot:hover img{filter:brightness(1.06)}
+.work-shot img{
+  width:100%;height:auto;display:block;pointer-events:none;
+  filter:drop-shadow(0 26px 42px rgba(0,0,0,.55));
+  transition:filter var(--dur);
+}
+.work-shot:hover{transform:translateY(-6px)}
+.work-shot:hover img{filter:drop-shadow(0 34px 54px rgba(0,0,0,.62))}
 /* enquanto a imagem do projeto não existe, a moldura vira uma placa com o endereço */
 .work-shot--vazio{
   aspect-ratio:3/2;display:grid;place-items:center;
@@ -830,15 +835,13 @@ header.scrolled{
   font-family:var(--font-display);font-weight:600;font-size:.92rem;
   letter-spacing:.05em;color:var(--white-50);
 }
-/* selo "no ar": o único ponto de cor do bloco */
+/* selo "no ar": o único ponto de cor do bloco, agora ao lado do nome */
+.work-titulo{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .work-live{
-  position:absolute;top:16px;left:16px;z-index:2;
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-display);font-weight:600;font-size:.66rem;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--white);
-  background:rgba(10,10,14,.72);border:1px solid var(--border-strong);
-  border-radius:99px;padding:7px 13px;
-  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  display:inline-flex;align-items:center;gap:8px;flex:none;
+  font-family:var(--font-display);font-weight:600;font-size:.62rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--white-70);
+  border:1px solid var(--border-strong);border-radius:99px;padding:5px 11px;
 }
 .work-live i{
   width:6px;height:6px;border-radius:50%;background:var(--orange-500);flex:none;
