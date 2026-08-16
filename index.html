@@ -332,6 +332,13 @@
     </div>
   </div>
 
+  <div class="container">
+    <p class="work-dica" id="workDica" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M15 6l6 6-6 6"/></svg>
+      Arraste para o lado
+    </p>
+  </div>
+
   <div class="work-rail" id="workRail" tabindex="0" role="region" aria-label="Projetos, arraste para o lado">
     <div class="work-track">
 
@@ -344,11 +351,13 @@
           <h3>Cabana Afrodite</h3>
           <span class="work-tipo">Site institucional &middot; Hospedagem</span>
           <p>Cabana A-Frame para casais entre Petrópolis e Paty do Alferes. Galeria de ambientes, avaliações reais dos hóspedes e um calendário de datas que leva direto para a conversa no WhatsApp.</p>
-          <ul class="work-tags"><li>Next.js</li><li>Reserva direta</li><li>SEO</li></ul>
-          <a class="work-cta" href="https://afroditecabana.com.br/" target="_blank" rel="noopener">
-            afroditecabana.com.br
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
+          <div class="work-rodape">
+            <ul class="work-tags"><li>Next.js</li><li>Reserva direta</li><li>SEO</li></ul>
+            <a class="work-cta" href="https://afroditecabana.com.br/" target="_blank" rel="noopener">
+              afroditecabana.com.br
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
         </div>
       </article>
 
@@ -360,12 +369,14 @@
         <div class="work-info">
           <h3>Centro Médico Viver Bem</h3>
           <span class="work-tipo">Site institucional &middot; Saúde</span>
-          <p>Centro médico em Petrópolis com mais de 20 especialidades. O site organiza consultas, ultrassonografias e exames laboratoriais em caminhos claros, com agendamento pelo WhatsApp em qualquer ponto da página.</p>
-          <ul class="work-tags"><li>Agendamento</li><li>SEO local</li><li>Mobile first</li></ul>
-          <a class="work-cta" href="https://www.centromedicoviverbem.com.br/" target="_blank" rel="noopener">
-            centromedicoviverbem.com.br
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
+          <p>Centro médico em Petrópolis com mais de 20 especialidades. Consultas, ultrassonografias e exames laboratoriais organizados em caminhos claros, com agendamento pelo WhatsApp em qualquer ponto da página.</p>
+          <div class="work-rodape">
+            <ul class="work-tags"><li>Agendamento</li><li>SEO local</li><li>Mobile first</li></ul>
+            <a class="work-cta" href="https://www.centromedicoviverbem.com.br/" target="_blank" rel="noopener">
+              centromedicoviverbem.com.br
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
         </div>
       </article>
 
@@ -373,7 +384,7 @@
   </div>
 
   <div class="container">
-    <div class="work-barra reveal" aria-hidden="true"><span id="workProgresso"></span></div>
+    <div class="work-passos reveal" id="workPassos" aria-hidden="true"><span></span><span></span></div>
   </div>
 </section>
 
@@ -661,10 +672,12 @@
 (function(){
   const rail = document.getElementById('workRail');
   if(!rail) return;
-  const barra = document.getElementById('workProgresso');
-  const btns  = document.querySelectorAll('.work-btn');
+  const cards  = [...rail.querySelectorAll('.work')];
+  const passos = [...document.querySelectorAll('#workPassos span')];
+  const dica   = document.getElementById('workDica');
+  const btns   = document.querySelectorAll('.work-btn');
 
-  /* no toque o próprio scroll nativo já resolve; isto é para o mouse */
+  /* no toque o scroll nativo já resolve; isto é o arraste com o mouse */
   let arrastando = false, xInicial = 0, scrollInicial = 0, moveu = 0;
   rail.addEventListener('pointerdown', e => {
     if(e.pointerType === 'touch') return;
@@ -691,22 +704,43 @@
   rail.addEventListener('click', e => { if(moveu > 6){ e.preventDefault(); e.stopPropagation(); } }, true);
 
   const passo = () => {
-    const card = rail.querySelector('.work');
-    const trilho = rail.querySelector('.work-track');
+    const card = cards[0];
     if(!card) return rail.clientWidth;
-    return card.getBoundingClientRect().width + parseFloat(getComputedStyle(trilho).gap || 0);
+    const gap = parseFloat(getComputedStyle(rail.querySelector('.work-track')).gap) || 0;
+    return card.getBoundingClientRect().width + gap;
   };
   btns.forEach(b => b.addEventListener('click', () => {
     rail.scrollBy({ left: passo() * Number(b.dataset.dir), behavior: 'smooth' });
   }));
 
+  /* o card atual é o de centro mais próximo do centro do trilho:
+     comparar pela borda esquerda erra quando dois cards cabem juntos */
+  const medir = () => {
+    const r = rail.getBoundingClientRect();
+    const meio = r.left + r.width / 2;
+    let atual = 0, menor = Infinity;
+    const visivel = cards.map((c, i) => {
+      const b = c.getBoundingClientRect();
+      const d = Math.abs(b.left + b.width / 2 - meio);
+      if(d < menor){ menor = d; atual = i; }
+      /* fração do card que está dentro da janela do trilho */
+      const dentro = Math.max(0, Math.min(b.right, r.right) - Math.max(b.left, r.left));
+      return dentro / b.width;
+    });
+    return { atual, visivel };
+  };
+
   const atualizar = () => {
     const max = rail.scrollWidth - rail.clientWidth;
-    if(barra) barra.style.width = (max <= 1 ? 100 : (rail.scrollLeft / max) * 100) + '%';
+    const { atual, visivel } = medir();
+    passos.forEach((p, k) => p.classList.toggle('atual', k === atual));
+    /* só recua o que está mesmo cortado, não o que está inteiro na tela */
+    cards.forEach((c, k) => c.classList.toggle('longe', visivel[k] < .55));
     btns.forEach(b => {
       const dir = Number(b.dataset.dir);
       b.disabled = max <= 1 || (dir < 0 ? rail.scrollLeft <= 2 : rail.scrollLeft >= max - 2);
     });
+    if(dica && rail.scrollLeft > 12) dica.classList.add('oculta');
   };
   rail.addEventListener('scroll', atualizar, {passive:true});
   addEventListener('resize', atualizar);
