@@ -660,7 +660,12 @@ header.scrolled{
 /* ==========================================================================
    SERVIÇOS
    ========================================================================== */
-.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+/* bento: as duas frentes principais ganham mais largura, alternando o lado */
+.services-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.service-card:nth-child(1){grid-column:span 7}
+.service-card:nth-child(2){grid-column:span 5}
+.service-card:nth-child(3){grid-column:span 5}
+.service-card:nth-child(4){grid-column:span 7}
 .service-card{
   position:relative;display:flex;flex-direction:column;background:var(--card-bg);
   border:1px solid var(--card-border);
@@ -686,11 +691,15 @@ header.scrolled{
 }
 .service-card:hover .service-icon{background:rgba(255,157,46,.12);border-color:rgba(255,157,46,.34);color:var(--orange-500)}
 .service-num{
-  position:absolute;top:26px;right:28px;font-family:var(--font-display);font-weight:700;
-  font-size:.82rem;letter-spacing:.1em;color:var(--text-faint);
+  position:absolute;top:18px;right:22px;line-height:1;pointer-events:none;
+  font-family:var(--font-display);font-weight:800;
+  font-size:clamp(2.4rem,3.6vw,3.4rem);letter-spacing:-.02em;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);
+  transition:-webkit-text-stroke-color var(--dur);
 }
-.service-card h3{font-size:1.22rem;margin-bottom:10px;letter-spacing:-.01em}
-.service-card p{color:var(--text-muted);font-size:.93rem;line-height:1.7}
+.service-card:hover .service-num{-webkit-text-stroke-color:rgba(255,157,46,.35)}
+.service-card h3{font-size:1.3rem;margin-bottom:10px;letter-spacing:-.02em}
+.service-card p{color:var(--text-muted);font-size:.93rem;line-height:1.7;max-width:54ch}
 .service-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .service-tags span{
   font-size:.72rem;font-weight:500;color:var(--text-muted);
@@ -808,7 +817,7 @@ header.scrolled{
   padding:0 max(24px,calc((100vw - 1200px)/2));
 }
 .work{
-  flex:none;width:min(720px,82vw);
+  flex:none;width:min(400px,35vw);
   /* start, não center: o primeiro card alinha com o container e o trilho
      não re-encaixa sozinho quando as imagens terminam de carregar */
   scroll-snap-align:start;
@@ -861,13 +870,13 @@ header.scrolled{
 }
 /* a ficha, embaixo da tela: nome grande e um rodapé com etiquetas e endereço */
 .work-info{padding-top:clamp(20px,2.4vw,28px);margin-top:clamp(16px,2vw,24px);border-top:1px solid var(--border)}
-.work-info h3{font-size:clamp(1.45rem,2.4vw,2rem);letter-spacing:-.03em;line-height:1.1}
+.work-info h3{font-size:clamp(1.2rem,1.7vw,1.45rem);letter-spacing:-.025em;line-height:1.15}
 .work-tipo{
   display:block;margin-top:8px;
   font-family:var(--font-display);font-weight:600;font-size:.68rem;
   letter-spacing:.16em;text-transform:uppercase;color:var(--white-50);
 }
-.work-info p{margin-top:14px;color:var(--text-muted);line-height:1.7;font-size:.95rem;max-width:60ch}
+.work-info p{margin-top:12px;color:var(--text-muted);line-height:1.68;font-size:.9rem;max-width:60ch}
 .work-rodape{
   display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
   margin-top:20px;padding-top:18px;border-top:1px solid var(--border);
@@ -915,12 +924,12 @@ header.scrolled{
   .work-head{flex-direction:column;align-items:flex-start;gap:18px}
   .work-ctrl{display:none}
   .work-dica{display:inline-flex}
-  .work{width:min(560px,78vw)}
+  .work{width:min(460px,72vw)}
   .work-rodape{flex-direction:column;align-items:flex-start;gap:14px}
   .work-info p{max-width:none}
 }
 @media (max-width:560px){
-  .work{width:82vw}
+  .work{width:74vw}
   .work-info h3{font-size:1.35rem}
 }
 
@@ -1611,7 +1620,7 @@ footer{
    RESPONSIVO
    ========================================================================== */
 @media (max-width:1024px){
-  .services-grid{grid-template-columns:1fr 1fr}
+  .services-grid .service-card{grid-column:span 6}
   .steps,.numbers{grid-template-columns:1fr 1fr}
   .pricing-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
   .footer-grid{grid-template-columns:1fr 1fr;row-gap:44px}
@@ -1641,7 +1650,8 @@ footer{
   header.menu-open .hamburger span:nth-child(2){opacity:0}
   header.menu-open .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   .header-cta{display:none}
-  .services-grid,.steps,.numbers,.stats-grid,.pricing-grid{grid-template-columns:1fr}
+  .steps,.numbers,.stats-grid,.pricing-grid{grid-template-columns:1fr}
+  .services-grid .service-card{grid-column:1/-1}
   .footer-grid{grid-template-columns:1fr;gap:38px}
   /* ---- espaçamento compacto no mobile ---- */
   .section{padding:56px 0}
