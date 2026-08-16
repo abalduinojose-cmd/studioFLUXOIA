@@ -386,20 +386,20 @@
 
 
       <article class="work">
-        <a class="work-shot" href="https://abalduinojose-cmd.github.io/quesia/" target="_blank" rel="noopener" aria-label="Abrir a prévia do site da Quesia Constâncio em uma nova aba">
+        <a class="work-shot" href="https://www.quesiaadv.com.br/" target="_blank" rel="noopener" aria-label="Abrir o site da Quesia Constâncio em uma nova aba">
           <img src="img/portfolio/quesia-adv.webp" alt="Site da advogada Quesia Constâncio aberto na tela de um notebook" loading="lazy" width="1523" height="996" draggable="false">
         </a>
         <div class="work-info">
           <div class="work-titulo">
             <h3>Quesia Constâncio</h3>
-            <span class="work-live work-live--breve"><i aria-hidden="true"></i>Em breve</span>
+            <span class="work-live"><i aria-hidden="true"></i>No ar</span>
           </div>
           <span class="work-tipo">Site institucional &middot; Advocacia</span>
           <p>Advogada em Pedro do Rio, Petrópolis, atuando em Direito Previdenciário, Imobiliário e Sucessório. Topo em vídeo, avaliações reais do Google em carrossel e sistema de pré-agendamento, para o cliente marcar a consulta sem precisar ligar.</p>
           <div class="work-rodape">
             <ul class="work-tags"><li>Pré-agendamento</li><li>Avaliações Google</li><li>SEO local</li></ul>
-            <a class="work-cta" href="https://abalduinojose-cmd.github.io/quesia/" target="_blank" rel="noopener">
-              Ver prévia
+            <a class="work-cta" href="https://www.quesiaadv.com.br/" target="_blank" rel="noopener">
+              quesiaadv.com.br
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
             </a>
           </div>
@@ -411,63 +411,6 @@
 
   <div class="container">
     <div class="work-passos reveal" id="workPassos" aria-hidden="true"><span></span><span></span><span></span></div>
-  </div>
-</section>
-
-<!-- ============ DEPOIMENTOS ============ -->
-<section id="depoimentos" class="section" style="padding-top:0">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="kicker">Depoimentos</div>
-      <h2 class="section-title">Quem já passou pelo <span class="hl">nosso fluxo</span></h2>
-    </div>
-
-    <div class="quotes-grid">
-
-      <!-- depoimento em destaque -->
-      <figure class="quote-card quote-lead reveal">
-        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote class="quote-text">
-          <p>A IA responde antes de eu pegar o celular. Virou meu melhor vendedor e o site novo passou a impressão de empresa grande.</p>
-        </blockquote>
-        <figcaption class="quote-author">
-          <span class="quote-avatar" aria-hidden="true">RM</span>
-          <span class="quote-id">
-            <b>Renata M.</b>
-            <span class="quote-role">E-commerce</span>
-          </span>
-        </figcaption>
-      </figure>
-
-      <!-- depoimentos secundários -->
-      <div class="quotes-aside">
-        <figure class="quote-card quote-sm reveal reveal-d1">
-          <blockquote class="quote-text">
-            <p>&ldquo;Antes eu respondia DM o dia inteiro. Agora a agenda enche sozinha pela landing page. Melhor investimento que fiz no digital.&rdquo;</p>
-          </blockquote>
-          <figcaption class="quote-author">
-            <span class="quote-avatar" aria-hidden="true">SP</span>
-            <span class="quote-id">
-              <b>Sorrisos Plax</b>
-            </span>
-          </figcaption>
-        </figure>
-
-        <figure class="quote-card quote-sm reveal reveal-d2">
-          <blockquote class="quote-text">
-            <p>&ldquo;Resposta em 30 segundos, 24 horas por dia. Mudou o jogo da nossa prospecção e o custo por lead caiu muito.&rdquo;</p>
-          </blockquote>
-          <figcaption class="quote-author">
-            <span class="quote-avatar" aria-hidden="true">AA</span>
-            <span class="quote-id">
-              <b>Alpha Assessoria</b>
-              <span class="quote-role">Contabilidade</span>
-            </span>
-          </figcaption>
-        </figure>
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -920,7 +863,7 @@ document.getElementById('waForm').addEventListener('submit', e => {
 /* ====== spotlight que segue o mouse nos cards ====== */
 (function(){
   if(!matchMedia('(pointer:fine)').matches) return;
-  document.querySelectorAll('.service-card,.price-card,.quote-card,.step').forEach(card => {
+  document.querySelectorAll('.service-card,.price-card,.step').forEach(card => {
     card.addEventListener('mousemove', e => {
       const r = card.getBoundingClientRect();
       card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
