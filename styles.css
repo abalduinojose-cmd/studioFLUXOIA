@@ -773,6 +773,80 @@ header.scrolled{
 .number span{display:block;margin-top:10px;color:var(--text-muted);font-size:.9rem;line-height:1.5;max-width:20ch}
 
 /* ==========================================================================
+   PORTFÓLIO
+   Um projeto por linha: a tela grande de um lado, a ficha do outro.
+   A grade ja aceita mais projetos sem mexer no CSS.
+   ========================================================================== */
+.work-grid{display:flex;flex-direction:column;gap:clamp(40px,5vw,72px)}
+.work{
+  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+  gap:clamp(26px,3.6vw,56px);align-items:center;
+}
+/* a tela: moldura fina, sem sombra colorida */
+.work-shot{
+  position:relative;display:block;border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--card-border);background:var(--card-bg);
+  transition:border-color var(--dur),transform var(--dur) var(--ease-out);
+}
+.work-shot img{width:100%;height:auto;display:block}
+/* enquanto a imagem do projeto não existe, a moldura vira uma placa com o endereço */
+.work-shot--vazio{
+  aspect-ratio:3/2;display:grid;place-items:center;
+  background:linear-gradient(160deg,var(--plum-850),var(--plum-900) 70%);
+}
+.work-vazio{
+  font-family:var(--font-display);font-weight:600;font-size:.92rem;
+  letter-spacing:.05em;color:var(--white-50);
+}
+.work-shot:hover{border-color:var(--border-strong);transform:translateY(-4px)}
+/* selo "no ar": o unico ponto de cor do bloco */
+.work-live{
+  position:absolute;top:14px;left:14px;z-index:2;
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-display);font-weight:600;font-size:.66rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--white);
+  background:rgba(10,10,14,.72);border:1px solid var(--border-strong);
+  border-radius:99px;padding:7px 13px;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.work-live i{
+  width:6px;height:6px;border-radius:50%;background:var(--orange-500);flex:none;
+  animation:livePulse 2.2s ease-in-out infinite;
+}
+/* a ficha */
+.work-num{
+  display:block;font-family:var(--font-display);font-weight:800;font-size:.78rem;
+  letter-spacing:.16em;color:var(--white-50);font-variant-numeric:tabular-nums;
+  margin-bottom:14px;
+}
+.work-info h3{font-size:clamp(1.5rem,2.6vw,2.1rem);letter-spacing:-.025em;line-height:1.1}
+.work-tipo{
+  display:block;margin-top:9px;
+  font-family:var(--font-display);font-weight:600;font-size:.7rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--white-70);
+}
+.work-info p{margin-top:18px;color:var(--text-muted);line-height:1.75;max-width:46ch}
+.work-tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.work-tags li{
+  font-family:var(--font-display);font-size:.68rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--white-50);
+  border:1px solid var(--border);border-radius:99px;padding:7px 13px;
+}
+.work-cta{
+  display:inline-flex;align-items:center;gap:9px;margin-top:26px;
+  font-family:var(--font-display);font-weight:600;font-size:.92rem;
+  color:var(--orange-500);text-decoration:none;
+  padding-bottom:4px;border-bottom:1px solid rgba(255,157,46,.3);
+  transition:border-color var(--dur-fast),gap var(--dur) var(--ease-out);
+}
+.work-cta:hover{border-bottom-color:var(--orange-500);gap:13px}
+
+@media (max-width:860px){
+  .work{grid-template-columns:1fr;gap:24px}
+  .work-info p{max-width:none}
+}
+
+/* ==========================================================================
    DEPOIMENTOS
    ========================================================================== */
 .quotes-grid{

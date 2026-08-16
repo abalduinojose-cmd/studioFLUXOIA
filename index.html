@@ -28,6 +28,7 @@
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
       <li><a href="#planos">Planos</a></li>
       <li><a href="quem-somos">Quem somos</a></li>
       <li><a href="equipe">Equipe</a></li>
@@ -311,6 +312,39 @@
   </div>
 </section>
 
+<!-- ============ PORTFÓLIO ============ -->
+<section id="portfolio" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Portfólio</div>
+      <h2 class="section-title">Projetos que já estão <span class="hl">no ar</span></h2>
+      <p class="section-sub">Nada de imagem de vitrine. Estes são sites publicados, com endereço próprio, que você pode abrir e navegar agora.</p>
+    </div>
+
+    <div class="work-grid">
+      <article class="work reveal">
+        <a class="work-shot" href="https://afroditecabana.com.br/" target="_blank" rel="noopener" aria-label="Abrir o site da Cabana Afrodite em uma nova aba">
+          <img src="img/portfolio/cabana-afrodite.png" alt="Site da Cabana Afrodite aberto na tela de um notebook" loading="lazy" width="1520" height="1013">
+          <span class="work-live"><i aria-hidden="true"></i>No ar</span>
+        </a>
+        <div class="work-info">
+          <span class="work-num" aria-hidden="true">01</span>
+          <h3>Cabana Afrodite</h3>
+          <span class="work-tipo">Site institucional &middot; Hospedagem</span>
+          <p>Cabana A-Frame para casais entre Petrópolis e Paty do Alferes. O site conta a experiência em fotos grandes, reúne as avaliações reais dos hóspedes e leva do calendário de datas direto para a conversa no WhatsApp.</p>
+          <ul class="work-tags">
+            <li>Next.js</li><li>Reserva direta</li><li>SEO</li><li>Mobile first</li>
+          </ul>
+          <a class="work-cta" href="https://afroditecabana.com.br/" target="_blank" rel="noopener">
+            afroditecabana.com.br
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ============ DEPOIMENTOS ============ -->
 <section id="depoimentos" class="section" style="padding-top:0">
   <div class="container">
@@ -493,6 +527,7 @@
         <h5>Navegação</h5>
         <ul>
           <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
           <li><a href="#metodo">Método</a></li>
           <li><a href="#planos">Planos</a></li>
           <li><a href="quem-somos">Quem somos</a></li>
@@ -588,6 +623,24 @@
   addEventListener('resize', resize);
   resize();
   draw();
+})();
+
+/* ====== portfólio: placa com o endereço enquanto a imagem não existe ====== */
+(function(){
+  document.querySelectorAll('.work-shot img').forEach(img => {
+    const trocar = () => {
+      const a = img.closest('.work-shot');
+      if(!a || a.classList.contains('work-shot--vazio')) return;
+      a.classList.add('work-shot--vazio');
+      img.remove();
+      const placa = document.createElement('span');
+      placa.className = 'work-vazio';
+      placa.textContent = a.getAttribute('href').replace(/^https?:\/\//,'').replace(/\/$/,'');
+      a.appendChild(placa);
+    };
+    if(img.complete && img.naturalWidth === 0) trocar();
+    img.addEventListener('error', trocar);
+  });
 })();
 
 /* ====== brilho que segue o mouse ====== */
