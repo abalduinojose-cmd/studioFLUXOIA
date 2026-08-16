@@ -315,33 +315,65 @@
 <!-- ============ PORTFÓLIO ============ -->
 <section id="portfolio" class="section" style="padding-top:0">
   <div class="container">
-    <div class="section-head reveal">
-      <div class="kicker">Portfólio</div>
-      <h2 class="section-title">Projetos que já estão <span class="hl">no ar</span></h2>
-      <p class="section-sub">Nada de imagem de vitrine. Estes são sites publicados, com endereço próprio, que você pode abrir e navegar agora.</p>
+    <div class="section-head work-head reveal">
+      <div>
+        <div class="kicker">Portfólio</div>
+        <h2 class="section-title">Projetos que já estão <span class="hl">no ar</span></h2>
+        <p class="section-sub">Nada de imagem de vitrine. São sites publicados, com endereço próprio, que você pode abrir e navegar agora.</p>
+      </div>
+      <div class="work-ctrl">
+        <button class="work-btn" type="button" data-dir="-1" aria-label="Projeto anterior">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button class="work-btn" type="button" data-dir="1" aria-label="Próximo projeto">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
     </div>
+  </div>
 
-    <div class="work-grid">
-      <article class="work reveal">
+  <div class="work-rail" id="workRail" tabindex="0" role="region" aria-label="Projetos, arraste para o lado">
+    <div class="work-track">
+
+      <article class="work">
         <a class="work-shot" href="https://afroditecabana.com.br/" target="_blank" rel="noopener" aria-label="Abrir o site da Cabana Afrodite em uma nova aba">
-          <img src="img/portfolio/cabana-afrodite.webp" alt="Site da Cabana Afrodite aberto na tela de um notebook" loading="lazy" width="1536" height="1024">
+          <img src="img/portfolio/cabana-afrodite.webp" alt="Site da Cabana Afrodite aberto na tela de um notebook" loading="lazy" width="1536" height="1024" draggable="false">
           <span class="work-live"><i aria-hidden="true"></i>No ar</span>
         </a>
         <div class="work-info">
-          <span class="work-num" aria-hidden="true">01</span>
           <h3>Cabana Afrodite</h3>
           <span class="work-tipo">Site institucional &middot; Hospedagem</span>
-          <p>Cabana A-Frame para casais entre Petrópolis e Paty do Alferes. O site conta a experiência em fotos grandes, reúne as avaliações reais dos hóspedes e leva do calendário de datas direto para a conversa no WhatsApp.</p>
-          <ul class="work-tags">
-            <li>Next.js</li><li>Reserva direta</li><li>SEO</li><li>Mobile first</li>
-          </ul>
+          <p>Cabana A-Frame para casais entre Petrópolis e Paty do Alferes. Galeria de ambientes, avaliações reais dos hóspedes e um calendário de datas que leva direto para a conversa no WhatsApp.</p>
+          <ul class="work-tags"><li>Next.js</li><li>Reserva direta</li><li>SEO</li></ul>
           <a class="work-cta" href="https://afroditecabana.com.br/" target="_blank" rel="noopener">
             afroditecabana.com.br
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           </a>
         </div>
       </article>
+
+      <article class="work">
+        <a class="work-shot" href="https://www.centromedicoviverbem.com.br/" target="_blank" rel="noopener" aria-label="Abrir o site do Centro Médico Viver Bem em uma nova aba">
+          <img src="img/portfolio/viver-bem.webp" alt="Site do Centro Médico Viver Bem aberto na tela de um notebook" loading="lazy" width="1535" height="1024" draggable="false">
+          <span class="work-live"><i aria-hidden="true"></i>No ar</span>
+        </a>
+        <div class="work-info">
+          <h3>Centro Médico Viver Bem</h3>
+          <span class="work-tipo">Site institucional &middot; Saúde</span>
+          <p>Centro médico em Petrópolis com mais de 20 especialidades. O site organiza consultas, ultrassonografias e exames laboratoriais em caminhos claros, com agendamento pelo WhatsApp em qualquer ponto da página.</p>
+          <ul class="work-tags"><li>Agendamento</li><li>SEO local</li><li>Mobile first</li></ul>
+          <a class="work-cta" href="https://www.centromedicoviverbem.com.br/" target="_blank" rel="noopener">
+            centromedicoviverbem.com.br
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </article>
+
     </div>
+  </div>
+
+  <div class="container">
+    <div class="work-barra reveal" aria-hidden="true"><span id="workProgresso"></span></div>
   </div>
 </section>
 
@@ -623,6 +655,62 @@
   addEventListener('resize', resize);
   resize();
   draw();
+})();
+
+/* ====== portfólio: arrastar com o mouse, setas e barra de progresso ====== */
+(function(){
+  const rail = document.getElementById('workRail');
+  if(!rail) return;
+  const barra = document.getElementById('workProgresso');
+  const btns  = document.querySelectorAll('.work-btn');
+
+  /* no toque o próprio scroll nativo já resolve; isto é para o mouse */
+  let arrastando = false, xInicial = 0, scrollInicial = 0, moveu = 0;
+  rail.addEventListener('pointerdown', e => {
+    if(e.pointerType === 'touch') return;
+    arrastando = true; moveu = 0;
+    xInicial = e.clientX; scrollInicial = rail.scrollLeft;
+    rail.classList.add('arrastando');
+    rail.setPointerCapture(e.pointerId);
+  });
+  rail.addEventListener('pointermove', e => {
+    if(!arrastando) return;
+    const d = e.clientX - xInicial;
+    moveu = Math.max(moveu, Math.abs(d));
+    rail.scrollLeft = scrollInicial - d;
+  });
+  const soltar = e => {
+    if(!arrastando) return;
+    arrastando = false;
+    rail.classList.remove('arrastando');
+    try{ rail.releasePointerCapture(e.pointerId); }catch(_){}
+  };
+  rail.addEventListener('pointerup', soltar);
+  rail.addEventListener('pointercancel', soltar);
+  /* um arraste não pode virar clique no link do projeto */
+  rail.addEventListener('click', e => { if(moveu > 6){ e.preventDefault(); e.stopPropagation(); } }, true);
+
+  const passo = () => {
+    const card = rail.querySelector('.work');
+    const trilho = rail.querySelector('.work-track');
+    if(!card) return rail.clientWidth;
+    return card.getBoundingClientRect().width + parseFloat(getComputedStyle(trilho).gap || 0);
+  };
+  btns.forEach(b => b.addEventListener('click', () => {
+    rail.scrollBy({ left: passo() * Number(b.dataset.dir), behavior: 'smooth' });
+  }));
+
+  const atualizar = () => {
+    const max = rail.scrollWidth - rail.clientWidth;
+    if(barra) barra.style.width = (max <= 1 ? 100 : (rail.scrollLeft / max) * 100) + '%';
+    btns.forEach(b => {
+      const dir = Number(b.dataset.dir);
+      b.disabled = max <= 1 || (dir < 0 ? rail.scrollLeft <= 2 : rail.scrollLeft >= max - 2);
+    });
+  };
+  rail.addEventListener('scroll', atualizar, {passive:true});
+  addEventListener('resize', atualizar);
+  atualizar();
 })();
 
 /* ====== portfólio: placa com o endereço enquanto a imagem não existe ====== */
